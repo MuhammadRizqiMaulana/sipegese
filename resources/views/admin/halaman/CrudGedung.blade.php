@@ -1,0 +1,76 @@
+@extends('admin.layout.TampilanAdmin')
+@section('content')
+<!-- Container Fluid-->
+        <div class="container-fluid" id="container-wrapper">
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Data Gedung</h1>
+            <ol class="breadcrumb">  
+              <li class="breadcrumb-item"><a href="{{url ('dashboardadmin')}}">Dashboard</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Data Gedung</li>
+            </ol>
+          </div>
+          <hr>
+          <!-- DataTable with Hover -->
+            <div class="col-lg-12">
+              <div class="card mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <a href="{{url ('TambahGedung')}}" class="btn btn-success">Tambah data</a>
+                </div>
+                <div class="table-responsive p-3">
+                  <table class="table align-items-center table-flush table-hover" id="dataTableHover">
+                    <thead class="thead-light">
+                      <tr>
+                        <th>No</th>
+                        <th>Id Gedung</th>
+                        <th>Nama Gedung</th>
+                        <th>alamat</th>
+                        <th>deskripsi</th>
+                        <th>harga</th>
+                        <th>gambar</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tfoot>
+                      <tr>
+                        <th>No</th>
+                        <th>Id Gedung</th>
+                        <th>Nama Gedung</th>
+                        <th>alamat</th>
+                        <th>deskripsi</th>
+                        <th>harga</th>
+                        <th>gambar</th>
+                        <th></th>
+                      </tr>
+                    </tfoot>
+                    <tbody>
+                      @php
+                        $no=1;
+                      @endphp
+                      @foreach($datas as $tampil)
+                      <tr>
+                        <td>{{$no++}}</td>
+                        <td>{{$tampil->id_gedung}}</td>
+                        <td>{{$tampil->nama_gedung}}</td>
+                        <td>{{$tampil->alamat}}</td>
+                        <td>{{$tampil->deskripsi}}</td>
+                        <td>{{$tampil->harga}}</td>
+                        <td>{{$tampil->gambar}}</td>
+                        
+                        <td>
+                          <a href="EditGedung{{$tampil->id_gedung}}" class="btn btn-warning">
+                            <i class="fas fa-pencil-alt"></i>
+                          </a>
+                          <a href="HapusGedung{{$tampil->id_gedung}}" class="btn btn-danger">
+                            <i class="fas fa-trash"></i>
+                          </a>
+                        </td>
+                      </tr>
+                    </tbody>
+                      @endforeach 
+                  </table>
+                </div>
+              </div>
+            </div>
+
+        <!---Container Fluid-->
+@endsection
