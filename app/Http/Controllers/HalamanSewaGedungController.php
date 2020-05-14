@@ -37,7 +37,8 @@ class HalamanSewaGedungController extends Controller
         $data->email_penyewa = $request->email;
         $data->status_sewa = 'menunggu';
         $data->save();
-        return redirect('HalamanSewaGedung');
+        return redirect('HalamanKonfirmasiBayar'.$request->id_penyewaan.'');
     }
 
+    
 }

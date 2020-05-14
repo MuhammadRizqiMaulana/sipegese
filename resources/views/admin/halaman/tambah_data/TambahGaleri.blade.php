@@ -3,11 +3,11 @@
       <!-- Container Fluid-->
         <div class="container-fluid" id="container-wrapper">
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Tambah Data Gedung</h1>
+            <h1 class="h3 mb-0 text-gray-800">Tambah Data Galeri</h1>
             <ol class="breadcrumb">  
               <li class="breadcrumb-item"><a href="{{url ('dashboardadmin')}}">Dashboard</a></li>
-              <li class="breadcrumb-item"><a href="{{url ('CrudGedung')}}">Data Gedung</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Tambah Data Gedung</li>            
+              <li class="breadcrumb-item"><a href="{{url ('CrudGedung')}}">Data Galeri</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Tambah Data Galeri</li>            
             </ol>
           </div>
           <hr>
@@ -17,7 +17,7 @@
               <!-- Form Basic -->
               <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Tambah Data Gedung</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Tambah Data Galeri</h6>
                 </div>
                 <div class="card-body">
                     <!------------ Alert----------->
@@ -37,29 +37,27 @@
 
                     <!------------ Alert----------->
 
-                  <form enctype="multipart/form-data" class="contact-form-area contact-page-form contact-form text-left" action="{{url('AksiTambahGedung')}}" method="post">
+                  <form enctype="multipart/form-data" class="contact-form-area contact-page-form contact-form text-left" action="{{url('AksiTambahGaleri')}}" method="post">
 
                     {{csrf_field()}}
 
-                    <div class="form-group">
-                      <label>Nama Gedung</label>
-                      <input type="text" class="form-control" name="nama_gedung" placeholder="Masukkan Nama Gedung">
+                    <div class="form-group col-md-12">
+                      <div class="form-select">
+                        <select name="gedung">
+                          <option>Pilih gedung</option>
+                          @foreach($gedungs as $gedung)
+                          <option value="{{$gedung->id_gedung}}">{{$gedung->nama_gedung}}</option>
+                          @endforeach
+                        <select>
+                      </div>
                     </div>
                     <div class="form-group">
-                      <label>Alamat</label>
-                      <input type="text" class="form-control" name="alamat" placeholder="Masukkan Alamat">
+                      <label>Nama Galeri</label>
+                      <input type="text" class="form-control" name="nama_galeri" placeholder="Masukkan Nama Galeri">
                     </div>
                     <div class="form-group">
-                      <label>Deskripsi</label>
-                      <input type="text" class="form-control" name="deskripsi"placeholder="Masukkan Deskripsi">
-                    </div>
-                    <div class="form-group">
-                      <label>Harga</label>
-                      <input type="number" min="0" class="form-control" name="harga" placeholder="Masukkan Harga">
-                    </div>
-                    <div class="form-group">
-                      <label>Gambar Gedung</label>
-                      <input type="file" class="form-control" name="gambar_gedung">
+                      <label>Gambar Galeri</label>
+                      <input type="file" class="form-control" name="gambar_galeri">
                     </div>
                     
                     <div class="form-group"> 

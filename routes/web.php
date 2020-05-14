@@ -24,21 +24,21 @@ Route::get('HalamanRegisterUser','HalamanLoginUserController@register');
 Route::post('registerPost','HalamanLoginUserController@registerPost');
 Route::get('logout','HalamanLoginUserController@logout');
 
-Route::get('HalamanFasilitas',function() {
-    $bangunan=['Luas Ruang Utama' => '500', 'Luas Lobby' => '100', 'Luas Teras Depan' => '50'];
-    return view('user.halaman.HalamanFasilitas', compact('bangunan'));
-});
-
-/*Route::get('HalamanFasilitas','HalamanFasilitasController@index');*/
+Route::get('HalamanFasilitas','HalamanFasilitasController@index');
 
 /*---<<Route halaman Informasi belum dibuat>>-------*/
 
 Route::get('HalamanSewaGedung','HalamanSewaGedungController@pilih_gedung');
 Route::post('AksiSewa','HalamanSewaGedungController@store');
 
-Route::get('HalamanGaleri', function () {
-    return view('user.halaman.HalamanGaleri');
+Route::get('HalamanGaleri','HalamanGaleriController@index');
+
+Route::get('HalamanKonfirmasiBayar', function () {
+    return view('user.halaman.HalamanKonfirmasiBayar');
 });
+Route::get('HalamanKonfirmasiBayar{id_penyewaan}','HalamanKonfirmasiBayarController@index');
+Route::get('HalamanKonfirmasiBayar/cari','HalamanKonfirmasiBayarController@cari');
+Route::post('AksiKonfirmasiBayar','HalamanKonfirmasiBayarController@store');
 
 /*------End Halaman User------------*/
 
@@ -62,13 +62,17 @@ Route::get('CrudFasilitas', function () {
     return view('admin.halaman.CrudFasilitas');
 });
 
-/*Route::get('CrudFasilitas', 'CrudFasilitasController@index'); */
+Route::get('CrudFasilitas','CrudFasilitasController@index');
+Route::get('TambahFasilitas','CrudFasilitasController@tambah');
+Route::get('TambahFasilitas','CrudFasilitasController@pilih_gedung');
+Route::post('AksiTambahFasilitas','CrudFasilitasController@store');
 
 /*-----<<Halaman Crud Kalender Acara belum dibuat>>-------*/
 
-Route::get('CrudGaleri', function () {
-    return view('admin.halaman.CrudGaleri');
-});
+Route::get('CrudGaleri','CrudGaleriController@index');
+Route::get('TambahGaleri','CrudGaleriController@tambah');
+Route::get('TambahGaleri','CrudGaleriController@pilih_gedung');
+Route::post('AksiTambahGaleri','CrudGaleriController@store');
 
 /*------End Halaman Admin------------*/
 

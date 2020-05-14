@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 04 Bulan Mei 2020 pada 08.53
+-- Waktu pembuatan: 14 Bulan Mei 2020 pada 05.52
 -- Versi server: 10.4.6-MariaDB
 -- Versi PHP: 7.2.22
 
@@ -71,6 +71,14 @@ CREATE TABLE `fasilitas` (
   `fasilitas_tambahan5` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `fasilitas`
+--
+
+INSERT INTO `fasilitas` (`id_fasilitas`, `id_gedung`, `ruangan_tambahan`, `toilet`, `perlengkapan_operator`, `kursi`, `musholah`, `fasilitas_tambahan1`, `fasilitas_tambahan2`, `fasilitas_tambahan3`, `fasilitas_tambahan4`, `fasilitas_tambahan5`) VALUES
+(4, 10, 'Ruangan Rias, Ruangan Salin', 'Toilet laki-laki dan perumpuan', 'Meja dan Kursi Operator', '700 kursi', 'terdapat Mushola', 'Ruangan Full AC', 'Lantai Full Karpet', 'Panggung utama 10 X 7 m', NULL, NULL),
+(5, 9, 'Ruangan Rias, Ruangan Salin', 'Toilet laki-laki dan perumpuan', 'Meja dan Kursi Operator', '500 Kursi', 'Terdapat Mushola', 'Ruangan Full AC', 'Lantai Marmer', NULL, NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -79,10 +87,23 @@ CREATE TABLE `fasilitas` (
 
 CREATE TABLE `galeri` (
   `id_galeri` int(11) NOT NULL,
-  `id_gedung` int(11) NOT NULL,
+  `id_gedung` int(11) DEFAULT NULL,
   `nama_galeri` varchar(255) NOT NULL,
-  `nama_gambar` varchar(255) NOT NULL
+  `gambar_galeri` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `galeri`
+--
+
+INSERT INTO `galeri` (`id_galeri`, `id_gedung`, `nama_galeri`, `gambar_galeri`) VALUES
+(1, 11, 'Gambar Acara Sunatan', '1588706832_item1.png'),
+(2, 11, 'Gambar Acara Sunatan', '1588706987_gambar2.jpg'),
+(3, 10, 'Gambar Acara Sunatan', '1588707426_item2.png'),
+(4, 9, 'Gambar Acara Sunatan', '1588779490_item4.png'),
+(5, 10, 'Gambar Acara Sunatan', '1588780423_footer-bg1.jpg'),
+(6, 10, 'Gambar Acara Sunatan', '1588781597_counter-bg.jpg'),
+(7, 11, 'Gambar Acara Sunatan', '1588781640_cta-bg.jpg');
 
 -- --------------------------------------------------------
 
@@ -96,16 +117,17 @@ CREATE TABLE `gedung` (
   `alamat` varchar(255) NOT NULL,
   `deskripsi` varchar(255) NOT NULL,
   `harga` int(15) NOT NULL,
-  `gambar` varchar(255) NOT NULL
+  `gambar_gedung` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `gedung`
 --
 
-INSERT INTO `gedung` (`id_gedung`, `nama_gedung`, `alamat`, `deskripsi`, `harga`, `gambar`) VALUES
-(9, 'Gedung Indramayu', 'Indramayu', 'fasilitas Top', 8000000, 'zXzc_wdc.png'),
-(10, 'Gedung Cirebon', 'Cirebon', 'Cirebon indah', 5000000, 'sdcc.jpg');
+INSERT INTO `gedung` (`id_gedung`, `nama_gedung`, `alamat`, `deskripsi`, `harga`, `gambar_gedung`) VALUES
+(9, 'Gedung Indramayu', 'Indramayu', 'fasilitas Top', 8000000, 'gambar1.jpg'),
+(10, 'Gedung Cirebon', 'Cirebon', 'Cirebon indah', 5000000, '1588702414_gambar12.jpg'),
+(11, 'Gedung Kuningan', 'Kuningan', 'fasilitas Top', 10000, '1588701907_item1.png');
 
 -- --------------------------------------------------------
 
@@ -114,12 +136,21 @@ INSERT INTO `gedung` (`id_gedung`, `nama_gedung`, `alamat`, `deskripsi`, `harga`
 --
 
 CREATE TABLE `pembayaran` (
-  `id_pembayaran` varchar(100) NOT NULL,
+  `id_pembayaran` int(20) NOT NULL,
   `id_penyewaan` varchar(100) NOT NULL,
   `bukti_pembayaran` varchar(255) NOT NULL,
   `jumlah_bayar` int(11) NOT NULL,
   `status_bayar` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `pembayaran`
+--
+
+INSERT INTO `pembayaran` (`id_pembayaran`, `id_penyewaan`, `bukti_pembayaran`, `jumlah_bayar`, `status_bayar`) VALUES
+(1, 'S-707254776', '1589126032_about-bg2.png', 5000000, 'menunggu Validasi'),
+(3, 'S-738604714', '1589126595_counter-bg.jpg', 8000000, 'menunggu Validasi'),
+(4, 'S-1908217930', '1589127552_item4.png', 10000, 'menunggu Validasi');
 
 -- --------------------------------------------------------
 
@@ -145,8 +176,13 @@ CREATE TABLE `penyewaan` (
 --
 
 INSERT INTO `penyewaan` (`id_penyewaan`, `id_user`, `id_gedung`, `id_admin`, `tanggal_sewa`, `tanggal_selesai`, `nama_acara`, `nama_penyewa`, `email_penyewa`, `status_sewa`) VALUES
-('12', 4, 9, 3, '2020-04-09', '2020-04-11', 'Acara Pernikahan', 'andi', 'andi@gmail.com', 'menunggu konfirmasi'),
+('1212345678901', 4, 9, 3, '2020-04-09', '2020-04-11', 'Acara Pernikahan', 'andi', 'andi@gmail.com', 'menunggu konfirmasi'),
+('B-12345678901', NULL, 11, NULL, '2020-05-12', '0000-00-00', 'Ngaji', 'Andian', 'Andian@andian.com', 'bayar'),
 ('S-106837766', NULL, 10, NULL, '2020-04-15', '2020-04-15', 'Acara Pengajian', 'Maulana', 'maulana@gmail.com', 'menunggu'),
+('S-1078244669', NULL, 10, NULL, '2020-04-20', '2020-04-20', 'Reonian', 'Jono', 'Jono@jono.com', 'menunggu'),
+('S-1667232156', NULL, 9, NULL, '2020-04-19', '2020-04-19', 'hg', 'nbmgh', 'diky@gmail.com', 'menunggu'),
+('S-1908217930', NULL, 11, NULL, '2020-04-25', '2020-04-25', 'Rapat', 'Maulana', 'diky@gmail.comm', 'menunggu'),
+('S-707254776', NULL, 10, NULL, '2020-04-30', '2020-04-30', 'Rapat', 'Wahid', 'Wahid@wahid.com', 'menunggu'),
 ('S-738604714', NULL, 9, NULL, NULL, '0000-00-00', 'Acara Rapat', 'Rizqi Maulana', 'rizqi@gmail.com', 'menunggu pembayaran');
 
 -- --------------------------------------------------------
@@ -240,19 +276,25 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT untuk tabel `fasilitas`
 --
 ALTER TABLE `fasilitas`
-  MODIFY `id_fasilitas` int(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_fasilitas` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `galeri`
 --
 ALTER TABLE `galeri`
-  MODIFY `id_galeri` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_galeri` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT untuk tabel `gedung`
 --
 ALTER TABLE `gedung`
-  MODIFY `id_gedung` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_gedung` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT untuk tabel `pembayaran`
+--
+ALTER TABLE `pembayaran`
+  MODIFY `id_pembayaran` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`

@@ -12,5 +12,5 @@ class ModelGaleri extends Model
     protected $primaryKey   = 'id_galeri';  //primary key
     protected $fillable      = ['id_gedung', 
     							'nama_galeri',
-    							'nama_gambar']; //field tabel
+    							'gambar_galeri']; //field tabel
 }

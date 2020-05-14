@@ -39,22 +39,49 @@
 		<section class="menu_area section_gap">
 			<div class="container">
 				<div class="row menu_inner">
-					<div class="col-lg-5">
-						<div class="menu_list">
-							<h1>Rincian Bangunan</h1>	
-						</div>
-					</div>
+					@foreach($datas as $tampil)
 					<div class="col-lg-4 col-sm-6 mt-sm-30 typo-sec">
-						<h1 class="mb-20 title_color">Fasilitas Gedung</h1>
+						<h1 class="mb-20 title_color">{{$tampil->Gedung->nama_gedung}}</h1>
+						<a href="{{ url('img/gedung/'.$tampil->Gedung->gambar_gedung) }}" class="img-gal">
+								<div class="single-gallery-image" style="background: url({{ url('img/gedung/'.$tampil->Gedung->gambar_gedung) }});"></div>
+							</a>
+						<hr>
 							<div class="">
-								<ul class="unordered-list">
-									
+								<ul class="unordered-list">									
 									<li>
-										<p>....</p>
+										<p>{{$tampil->ruangan_tambahan}}</p>
 									</li>
+									<li>
+										<p>{{$tampil->toilet}}</p>
+									</li>
+									<li>
+										<p>{{$tampil->perlengkapan_operator}}</p>
+									</li>
+									<li>
+										<p>{{$tampil->kursi}}</p>
+									</li>
+									<li>
+										<p>{{$tampil->musholah}}</p>
+									</li>
+									<li>
+										<p>{{$tampil->fasilitas_tambahan1}}</p>
+									</li>									
+									<li>
+										<p>{{$tampil->fasilitas_tambahan2}}</p>
+									</li>
+									<li>
+										<p>{{$tampil->fasilitas_tambahan3}}</p>
+									</li>
+									<li>
+										<p>{{$tampil->fasilitas_tambahan4}}</p>
+									</li>
+									<li>
+										<p>{{$tampil->fasilitas_tambahan5}}</p>
+									</li>										
 								</ul>
 							</div>
-						</div>
+					</div>
+					@endforeach
 					
 				</div>
 			</div>

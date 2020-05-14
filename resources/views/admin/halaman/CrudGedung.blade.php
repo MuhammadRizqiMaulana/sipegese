@@ -53,8 +53,11 @@
                         <td>{{$tampil->nama_gedung}}</td>
                         <td>{{$tampil->alamat}}</td>
                         <td>{{$tampil->deskripsi}}</td>
-                        <td>{{$tampil->harga}}</td>
-                        <td>{{$tampil->gambar}}</td>
+                        <td>{{$tampil->harga}}
+                        </td>
+                        <td>
+                            <img width="150px" src="{{ url('img/gedung/'.$tampil->gambar_gedung) }}">
+                        </td>
                         
                         <td>
                           <a href="EditGedung{{$tampil->id_gedung}}" class="btn btn-warning">

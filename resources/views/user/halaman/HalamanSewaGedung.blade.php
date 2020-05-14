@@ -44,7 +44,18 @@
 			<div class="container">
 				<div class="row align-items-center justify-content-center">
 					<div class="col-lg-6 offset-lg-6">
+
 						<div class="contact-form-section">
+
+				@if(\Session::has('alert-success'))
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                        {{Session::get('alert-success')}}
+                    </div>
+                  @endif
+
 							<h1>Formulir Penyewaan Gedung</h1>
 							<form class="contact-form-area contact-page-form contact-form text-right" action="{{url('AksiSewa')}}" method="post">
 								{{csrf_field()}}
@@ -88,7 +99,8 @@
 								</div>
 								
 								<div class="col-lg-12 text-center">
-									<input type="Submit" value="Sewa" class="primary-btn danger-border radius text-uppercase e-large">
+									
+									<button type="Submit" class="genric-btn info circle arrow e-large">SEWA<span class="lnr lnr-arrow-right"></span></button>
 								</div>
 							</form>
 						</div>

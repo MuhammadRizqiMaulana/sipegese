@@ -10,6 +10,7 @@ class ModelPenyewaan extends Model
 	
     protected $table  = 'penyewaan';  //nama tabel
     protected $primaryKey   = 'id_penyewaan';  //primary key
+    protected $keyType = 'string'; //primary key berupa string bukan integer
     protected $fillable      = ['id_user', 
     							'id_gedung',
     							'id_admin',
@@ -19,4 +20,9 @@ class ModelPenyewaan extends Model
                                 'nama_penyewa',
                                 'email_penyewa',
     							'status_sewa']; //field tabel
+
+    public function Gedung() { //jenis produk dimiliki oleh produk
+        return $this->belongsTo(ModelGedung::class,'id_gedung');
+        //nama_modelTabelrelasinya,foreignkey di tabel produk
+    }
 }

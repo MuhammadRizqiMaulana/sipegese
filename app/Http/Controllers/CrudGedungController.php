@@ -22,15 +22,21 @@ class CrudGedungController extends Controller
     		'alamat' => 'required',
     		'deskripsi' => 'required',
             'harga' => 'required',
-    		'gambar' => 'required' 
+    		'gambar_gedung' => 'required' 
     		]);
 
-    	$data = new ModelGedung();
-    	$data->nama_gedung = $request->nama_gedung;
-    	$data->alamat = $request->alamat;
-    	$data->deskripsi = $request->deskripsi;
-        $data->harga = $request->harga;
-    	$data->gambar = $request->gambar;
+
+        $file = $request->file('gambar_gedung'); // menyimpan data gambar yang diupload ke variabel $file
+        $nama_file = time()."_".$file->getClientOriginalName();
+        $file->move('img/gedung',$nama_file); // isi dengan nama folder tempat kemana file diupload
+
+        $data = new ModelGedung();
+        $data->nama_gedung = $request->nama_gedung;
+        $data->alamat = $request->alamat;
+        $data->deskripsi = $request->deskripsi;
+        $data->harga = $request->harga;        
+        $data->gambar_gedung = $nama_file;
+
     	$data->save();
     	return redirect('CrudGedung');
     }

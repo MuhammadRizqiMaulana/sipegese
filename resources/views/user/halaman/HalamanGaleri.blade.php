@@ -24,7 +24,7 @@
 							<div class="page-link-wrap">
 								<div class="page_link">
 									<a href="{{url('/')}}">Home</a>
-									<a href="{{url('galeri')}}">Galeri</a>
+									<a href="{{url('HalamanGaleri')}}">Galeri</a>
 								</div>
 							</div>
 						</div>
@@ -41,86 +41,14 @@
 				<div class="section-top-border">
 					<h3 class="title_color">Image Gallery</h3>
 					<div class="row gallery-item">
+						@foreach($datas as $tampil)
 						<div class="col-md-4">
-							<a href="img/galeri/gambar1.jpg" class="img-gal">
-								<div class="single-gallery-image" style="background: url(img/galeri/gambar1.jpg);"></div>
+							<a href="{{ url('img/galeri/'.$tampil->gambar_galeri) }}" class="img-gal">
+								<div class="single-gallery-image" style="background: url({{ url('img/galeri/'.$tampil->gambar_galeri) }});"></div>
 							</a>
 						</div>
-						<div class="col-md-4">
-							<a href="img/galeri/gambar2.jpg" class="img-gal">
-								<div class="single-gallery-image" style="background: url(img/galeri/gambar2.jpg);"></div>
-							</a>
-						</div>
-						<div class="col-md-4">
-							<a href="img/galeri/gambar3.jpg" class="img-gal">
-								<div class="single-gallery-image" style="background: url(img/galeri/gambar3.jpg);"></div>
-							</a>
-						</div>
-						<div class="col-md-4">
-							<a href="img/galeri/gambar4.jpg" class="img-gal">
-								<div class="single-gallery-image" style="background: url(img/galeri/gambar4.jpg);"></div>
-							</a>
-						</div>
-						<div class="col-md-4">
-							<a href="img/galeri/gambar5.jpg" class="img-gal">
-								<div class="single-gallery-image" style="background: url(img/galeri/gambar5.jpg);"></div>
-							</a>
-						</div>
-						<div class="col-md-4">
-							<a href="img/galeri/gambar6.jpg" class="img-gal">
-								<div class="single-gallery-image" style="background: url(img/galeri/gambar6.jpg);"></div>
-							</a>
-						</div>
-						<div class="col-md-4">
-							<a href="img/galeri/gambar7.jpg" class="img-gal">
-								<div class="single-gallery-image" style="background: url(img/galeri/gambar7.jpg);"></div>
-							</a>
-						</div>
-						<div class="col-md-4">
-							<a href="img/galeri/gambar8.jpg" class="img-gal">
-								<div class="single-gallery-image" style="background: url(img/galeri/gambar8.jpg);"></div>
-							</a>
-						</div>
-						<div class="col-md-4">
-							<a href="img/galeri/gambar9.jpg" class="img-gal">
-								<div class="single-gallery-image" style="background: url(img/galeri/gambar9.jpg);"></div>
-							</a>
-						</div>
-						<div class="col-md-4">
-							<a href="img/galeri/gambar10.jpg" class="img-gal">
-								<div class="single-gallery-image" style="background: url(img/galeri/gambar10.jpg);"></div>
-							</a>
-						</div>
-						<div class="col-md-4">
-							<a href="img/galeri/gambar11.jpg" class="img-gal">
-								<div class="single-gallery-image" style="background: url(img/galeri/gambar11.jpg);"></div>
-							</a>
-						</div>
-						<div class="col-md-4">
-							<a href="img/galeri/gambar12.jpg" class="img-gal">
-								<div class="single-gallery-image" style="background: url(img/galeri/gambar12.jpg);"></div>
-							</a>
-						</div>
-						<div class="col-md-4">
-							<a href="img/galeri/gambar13.jpg" class="img-gal">
-								<div class="single-gallery-image" style="background: url(img/galeri/gambar13.jpg);"></div>
-							</a>
-						</div>
-						<div class="col-md-4">
-							<a href="img/galeri/gambar14.jpg" class="img-gal">
-								<div class="single-gallery-image" style="background: url(img/galeri/gambar14.jpg);"></div>
-							</a>
-						</div>
-						<div class="col-md-4">
-							<a href="img/galeri/gambar15.jpg" class="img-gal">
-								<div class="single-gallery-image" style="background: url(img/galeri/gambar15.jpg);"></div>
-							</a>
-						</div>
-						<div class="col-md-4">
-							<a href="img/galeri/gambar16.jpg" class="img-gal">
-								<div class="single-gallery-image" style="background: url(img/galeri/gambar16.jpg);"></div>
-							</a>
-						</div>
+						@endforeach
+					
 					</div>
 				</div>
 				

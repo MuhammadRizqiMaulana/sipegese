@@ -14,5 +14,14 @@ class ModelGedung extends Model
     							'alamat',
     							'deskripsi',
                                 'harga',
-    							'gambar']; //field tabel 
+    							'gambar_gedung']; //field tabel 
+
+    public function Fasilitas() { //setiap 1 fasilitas memiliki 1 gedung
+    	return $this->hasOne(ModelFasilitas::class,'id_gedung');
+    	//nama_modelTabelrelasinya,foreignkey di tabel fasilitas
+    }
+
+    public function Penyewaan() { //banyak produk memiliki 1 seni tari
+        return $this->hasMany(ModelPenyewaan::class);
+    }
 }

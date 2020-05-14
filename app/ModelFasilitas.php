@@ -20,5 +20,9 @@ class ModelFasilitas extends Model
     							'fasilitas_tambahan2',
     							'fasilitas_tambahan3',
     							'fasilitas_tambahan4',
-    							'fasilitas_tambahan5']; //field tabel 
+    							'fasilitas_tambahan5']; //field tabel
+
+    public function Gedung() { //gedung dimiliki oleh fasilitas
+        return $this->belongsTo(ModelGedung::class,'id_gedung');
+    } 
 }

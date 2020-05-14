@@ -10,11 +10,19 @@
             </ol>
           </div>
           <hr>
+          @if(\Session::has('alert-success'))
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                        {{Session::get('alert-success')}}
+                    </div>
+                  @endif
           <!-- DataTable with Hover -->
             <div class="col-lg-12">
               <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <a href="{{ url('crudfasilitas/tambah') }}" class="btn btn-success">Tambah data</a>
+                  <a href="{{ url('TambahFasilitas') }}" class="btn btn-success">Tambah data</a>
                   <h6 class="m-0 font-weight-bold text-primary">DataTables with Hover</h6>
                 </div>
                 <div class="table-responsive p-3">
@@ -62,49 +70,77 @@
                         </th>
                       </tr>
                   </thead>
-                  <tbody>
+                  <tfoot>
                       <tr>
-                          <td>
-                              Id Fasilitas
-                          </td>
-                          <td>
-                              Id Gedung
-                          </td>
-                          <td>
-                              Ruangan Tambahan
-                          </td>
-                          <td>
-                              Toilet
-                          </td>
-                          <td>
-                              Perlengkapan Operator
-                          </td>
-                          <td>
-                              Kursi
-                          </td>
-                          <td>
-                              Mushola
-                          </td>
-                          <td>
-                              Fasilitas Tambahan 1
-                          </td>
-                          <td>
-                              Fasilitas Tambahan 2
-                          </td>
-                          <td>
-                              Fasilitas Tambahan 3
-                          </td>
-                          <td>
-                              Fasilitas Tambahan 4
-                          </td>
-                          <td>
-                              Fasilitas Tambahan 5
-                          </td>
-                          <td style="width: 20%">
-                            Aksi
-                          </th>
+                        <th>
+                            Id Fasilitas
+                        </th>
+                        <th>
+                            Id Gedung
+                        </th>
+                        <th>
+                            Ruangan Tambahan
+                        </th>
+                        <th>
+                            Toilet
+                        </th>
+                        <th>
+                            Perlengkapan Operator
+                        </th>
+                        <th>
+                            Kursi
+                        </th>
+                        <th>
+                            Mushola
+                        </th>
+                        <th>
+                            Fasilitas Tambahan 1
+                        </th>
+                        <th>
+                            Fasilitas Tambahan 2
+                        </th>
+                        <th>
+                            Fasilitas Tambahan 3
+                        </th>
+                        <th>
+                            Fasilitas Tambahan 4
+                        </th>
+                        <th>
+                            Fasilitas Tambahan 5
+                        </th>
+                        <th style="width: 20%">
+                          Aksi
+                        </th>
                       </tr>
-                      
+                    </tfoot>
+                  <tbody>
+                      @php
+                        $no=1;
+                      @endphp
+                      @foreach($datas as $tampil)
+                      <tr>
+                        <td>{{$no++}}</td>
+                        <td>{{$tampil->id_gedung}}</td>
+                        <td>{{$tampil->ruangan_tambahan}}</td>
+                        <td>{{$tampil->toilet}}</td>
+                        <td>{{$tampil->perlengkapan_operator}}</td>
+                        <td>{{$tampil->kursi}}</td>
+                        <td>{{$tampil->musholah}}</td>
+                        <td>{{$tampil->fasilitas_tambahan1}}</td>
+                        <td>{{$tampil->fasilitas_tambahan2}}</td>
+                        <td>{{$tampil->fasilitas_tambahan3}}</td>
+                        <td>{{$tampil->fasilitas_tambahan4}}</td>
+                        <td>{{$tampil->fasilitas_tambahan5}}</td>                        
+                        <td>
+                          <a href="EditAkunAdmin{{$tampil->id_admin}}" class="btn btn-warning">
+                            <i class="fas fa-pencil-alt"></i>
+                          </a>
+                          <a href="HapusAkunAdmin{{$tampil->id_admin}}" class="btn btn-danger">
+                            <i class="fas fa-trash"></i>
+                          </a>
+                        </td>
+                      </tr>
+                      @endforeach
                     </tbody>
                   </table>
                 </div>
