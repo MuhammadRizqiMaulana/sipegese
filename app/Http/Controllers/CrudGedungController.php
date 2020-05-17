@@ -22,7 +22,7 @@ class CrudGedungController extends Controller
     		'alamat' => 'required',
     		'deskripsi' => 'required',
             'harga' => 'required',
-    		'gambar_gedung' => 'required' 
+    		'gambar_gedung' => 'nullable' 
     		]);
 
 
@@ -38,7 +38,7 @@ class CrudGedungController extends Controller
         $data->gambar_gedung = $nama_file;
 
     	$data->save();
-    	return redirect('CrudGedung');
+    	return redirect('CrudGedung')->with('alert-success','Data berhasil ditambahkan!');
     }
 
    	public function edit($id_gedung) {
@@ -47,29 +47,39 @@ class CrudGedungController extends Controller
     }
 
     public function update($id_gedung, Request $request) {
-    	$this->validate($request,[
-    		'nama_gedung' => 'required',
-    		'alamat' => 'required',
-    		'deskripsi' => 'required',
+        $this->validate($request, [
+            'nama_gedung' => 'required',
+            'alamat' => 'required',
+            'deskripsi' => 'required',
             'harga' => 'required',
-    		'gambar' => 'required', 
-    		
-    	]);
+            'gambar_gedung' => 'nullable'
+        ]);
 
-    	$datas = ModelGedung::find($id_gedung);
-    	$datas->nama_gedung = $request->nama_gedung;
-    	$datas->alamat = $request->alamat;
-    	$datas->deskripsi = $request->deskripsi;
+        $datas = ModelGedung::find($id_gedung);
+        $datas->nama_gedung = $request->nama_gedung;
+        $datas->alamat = $request->alamat;
+        $datas->deskripsi = $request->deskripsi;
         $datas->harga = $request->harga;
-    	$datas->gambar = $request->gambar;
-    	$datas->save();
-    	return redirect('CrudGedung');
+
+        if (empty($request->gambar_gedung)){
+            $datas->gambar_gedung = $datas->gambar_gedung;
+        }
+        else{
+            unlink('img/gedung/'.$datas->gambar_gedung); //menghapus file lama
+            $file = $request->file('gambar_gedung'); // menyimpan data gambar yang diupload ke variabel $file
+            $nama_file = time()."_".$file->getClientOriginalName();
+            $file->move('img/gedung',$nama_file); // isi dengan nama folder tempat kemana file diupload
+            $datas->gambar_gedung = $nama_file;
+
+        }
+        $datas->save();
+        return redirect('CrudGedung')->with('alert-success','Data berhasil diubah!');
     }
 
     public function delete($id_gedung) {
     	$datas = Modelgedung::find($id_gedung);
     	$datas->delete();
-    	return redirect('CrudGedung');
+    	return redirect('CrudGedung')->with('alert-success','Data berhasil dihapus!');
     }
 
 }

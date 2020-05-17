@@ -58,14 +58,13 @@ Route::get('EditGedung{id_gedung}','CrudGedungController@edit');
 Route::put('AksiEditGedung{id_gedung}','CrudGedungController@update');
 Route::get('HapusGedung{id_gedung}','CrudGedungController@delete');
 
-Route::get('CrudFasilitas', function () {
-    return view('admin.halaman.CrudFasilitas');
-});
-
 Route::get('CrudFasilitas','CrudFasilitasController@index');
 Route::get('TambahFasilitas','CrudFasilitasController@tambah');
 Route::get('TambahFasilitas','CrudFasilitasController@pilih_gedung');
 Route::post('AksiTambahFasilitas','CrudFasilitasController@store');
+Route::get('EditFasilitas{id_fasilitas}','CrudFasilitasController@edit');
+Route::post('AksiEditFasilitas{id_fasilitas}','CrudFasilitasController@update');
+Route::get('HapusFasilitas{id_fasilitas}','CrudFasilitasController@delete');
 
 /*-----<<Halaman Crud Kalender Acara belum dibuat>>-------*/
 
@@ -73,6 +72,9 @@ Route::get('CrudGaleri','CrudGaleriController@index');
 Route::get('TambahGaleri','CrudGaleriController@tambah');
 Route::get('TambahGaleri','CrudGaleriController@pilih_gedung');
 Route::post('AksiTambahGaleri','CrudGaleriController@store');
+Route::get('EditGaleri{id_galeri}','CrudGaleriController@edit');
+Route::post('AksiEditGaleri{id_galeri}','CrudGaleriController@update');
+Route::get('HapusGaleri{id_galeri}','CrudGaleriController@delete');
 
 /*------End Halaman Admin------------*/
 

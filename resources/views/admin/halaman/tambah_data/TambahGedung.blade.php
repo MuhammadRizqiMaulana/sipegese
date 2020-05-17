@@ -42,23 +42,23 @@
                     {{csrf_field()}}
 
                     <div class="form-group">
-                      <label>Nama Gedung</label>
+                      <label><b>Nama Gedung</b></label>
                       <input type="text" class="form-control" name="nama_gedung" placeholder="Masukkan Nama Gedung">
                     </div>
                     <div class="form-group">
-                      <label>Alamat</label>
+                      <label><b>Alamat</b></label>
                       <input type="text" class="form-control" name="alamat" placeholder="Masukkan Alamat">
                     </div>
                     <div class="form-group">
-                      <label>Deskripsi</label>
+                      <label><b>Deskripsi</b></label>
                       <input type="text" class="form-control" name="deskripsi"placeholder="Masukkan Deskripsi">
                     </div>
                     <div class="form-group">
-                      <label>Harga</label>
+                      <label><b>Harga</b></label>
                       <input type="number" min="0" class="form-control" name="harga" placeholder="Masukkan Harga">
                     </div>
                     <div class="form-group">
-                      <label>Gambar Gedung</label>
+                      <label><b>Gambar Gedung</b></label>
                       <input type="file" class="form-control" name="gambar_gedung">
                     </div>
                     

@@ -52,16 +52,16 @@
                       @foreach($datas as $tampil)
                       <tr>
                         <td>{{$no++}}</td>
-                        <td>{{$tampil->id_gedung}}</td>
+                        <td>{{$tampil->Gedung->nama_gedung}}</td>
                         <td>{{$tampil->nama_galeri}}</td>
                         <td>
                           <img width="150px" src="{{ url('img/galeri/'.$tampil->gambar_galeri) }}">
                         </td>
                         <td>
-                          <a href="EditAkunAdmin{{$tampil->id_admin}}" class="btn btn-warning">
+                          <a href="EditGaleri{{$tampil->id_galeri}}" class="btn btn-warning">
                             <i class="fas fa-pencil-alt"></i>
                           </a>
-                          <a href="HapusAkunAdmin{{$tampil->id_admin}}" class="btn btn-danger">
+                          <a href="HapusGaleri{{$tampil->id_galeri}}" class="btn btn-danger">
                             <i class="fas fa-trash"></i>
                           </a>
                         </td>

@@ -120,7 +120,7 @@
                       @foreach($datas as $tampil)
                       <tr>
                         <td>{{$no++}}</td>
-                        <td>{{$tampil->id_gedung}}</td>
+                        <td>{{$tampil->Gedung->nama_gedung}}</td>
                         <td>{{$tampil->ruangan_tambahan}}</td>
                         <td>{{$tampil->toilet}}</td>
                         <td>{{$tampil->perlengkapan_operator}}</td>
@@ -132,10 +132,10 @@
                         <td>{{$tampil->fasilitas_tambahan4}}</td>
                         <td>{{$tampil->fasilitas_tambahan5}}</td>                        
                         <td>
-                          <a href="EditAkunAdmin{{$tampil->id_admin}}" class="btn btn-warning">
+                          <a href="EditFasilitas{{$tampil->id_fasilitas}}" class="btn btn-warning">
                             <i class="fas fa-pencil-alt"></i>
                           </a>
-                          <a href="HapusAkunAdmin{{$tampil->id_admin}}" class="btn btn-danger">
+                          <a href="HapusFasilitas{{$tampil->id_fasilitas}}" class="btn btn-danger">
                             <i class="fas fa-trash"></i>
                           </a>
                         </td>

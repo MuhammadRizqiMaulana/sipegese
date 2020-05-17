@@ -10,6 +10,17 @@
             </ol>
           </div>
           <hr>
+
+           @if(\Session::has('alert-success'))
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h6><i class="fas fa-sign-out-alt"></i><b> Success!!</b></h6>
+                        {{Session::get('alert-success')}}
+                    </div>
+                  @endif
+                  
           <!-- DataTable with Hover -->
             <div class="col-lg-12">
               <div class="card mb-4">

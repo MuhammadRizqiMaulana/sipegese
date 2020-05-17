@@ -1,11 +1,11 @@
-@extends('pemilik.layout.TampilanPemilik')
+@extends('admin.layout.TampilanAdmin')
 @section('content')
       <!-- Container Fluid-->
         <div class="container-fluid" id="container-wrapper">
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Tambah Data Gedung</h1>
+            <h1 class="h3 mb-0 text-gray-800">Ubah Data Gedung</h1>
             <ol class="breadcrumb">  
-              <li class="breadcrumb-item"><a href="{{url ('dashboardadmin')}}">Dashboard</a></li>
+              <li class="breadcrumb-item"><a href="{{url ('DashboardAdmin')}}">Dashboard</a></li>
               <li class="breadcrumb-item"><a href="{{url ('CrudGedung')}}">Data Gedung</a></li>
               <li class="breadcrumb-item active" aria-current="page">Ubah Data Gedung</li>            
             </ol>
@@ -37,13 +37,13 @@
 
                     <!------------ Alert----------->
 
-                  <form class="contact-form-area contact-page-form contact-form text-left" action="AksiEditGedung{{$datas->id_gedung}}" method="post">
+                  <form enctype="multipart/form-data" class="contact-form-area contact-page-form contact-form text-left" action="AksiEditGedung{{$datas->id_gedung}}" method="post">
 
                     {{csrf_field()}}
                     {{method_field('PUT')}}
 
                     <div class="form-group">
-                      <label>Nama Gedung</label>
+                      <label><b>Nama Gedung</b></label>
                       <input type="text" class="form-control" name="nama_gedung" placeholder="Masukkan Nama Gedung" value="{{$datas->nama_gedung}}">
 
                           @if($errors->has('nama_gedung'))
@@ -54,7 +54,7 @@
                     </div>
 
                     <div class="form-group">
-                      <label>Alamat</label>
+                      <label><b>Alamat</b></label>
                       <input type="text" class="form-control" name="alamat" placeholder="Masukkan Alamat" value="{{$datas->alamat}}">
 
                           @if($errors->has('alamat'))
@@ -65,7 +65,7 @@
                     </div>
 
                     <div class="form-group">
-                      <label>Deskripsi</label>
+                      <label><b>Deskripsi</b></label>
                       <input type="deskripsi" class="form-control" name="deskripsi"placeholder="Masukkan Deskripsi" value="{{$datas->deskripsi}}">
 
                           @if($errors->has('deskripsi'))
@@ -76,7 +76,7 @@
                     </div>
 
                     <div class="form-group">
-                      <label>Harga</label>
+                      <label><b>Harga</b></label>
                       <input type="number" min="0" class="form-control" name="harga" placeholder="Masukkan Harga (tanpa titik koma)" value="{{$datas->harga}}">
 
                           @if($errors->has('harga'))
@@ -87,19 +87,19 @@
                     </div>
 
                     <div class="form-group">
-                      <label>Gambar</label>
-                      <input type="text" class="form-control" name="gambar" placeholder="Masukkan Gambar" value="{{$datas->gambar}}">
+                      <label><b>Gambar Gedung</b></label>
+                      <input type="file" class="form-control" name="gambar_gedung">
 
-                          @if($errors->has('gambar'))
+                          @if($errors->has('gambar_gedung'))
                             <div class="text-danger">
-                              {{$errors->first('gambar')}}
+                              {{$errors->first('gambar_gedung')}}
                             </div>
                           @endif
                     </div>
 
                     <div class="form-group"> 
                         <input type="reset" class="btn btn-secondary"  value="Batal">
-                        <input type="submit" class="btn btn-primary" value="Simpan">
+                        <input type="submit" class="btn btn-primary" value="Ubah">
                     </div>
                 </form>
               </div>
