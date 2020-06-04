@@ -32,6 +32,7 @@ class HalamanLoginUserController extends Controller
             if(Hash::check($password,$data->password)){
                 Session::put('nama',$data->nama_user);
                 Session::put('email',$data->email);
+                Session::put('id_user',$data->id_user);
                 Session::put('login',TRUE);
                 return redirect('/');
             }

@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class ModelPenyewaan extends Model
 {
-    public $timestamps = false;
-	
     protected $table  = 'penyewaan';  //nama tabel
     protected $primaryKey   = 'id_penyewaan';  //primary key
     protected $keyType = 'string'; //primary key berupa string bukan integer
@@ -25,4 +23,10 @@ class ModelPenyewaan extends Model
         return $this->belongsTo(ModelGedung::class,'id_gedung');
         //nama_modelTabelrelasinya,foreignkey di tabel produk
     }
+
+    public function Pembayaran() { //setiap 1 pembayaran memiliki 1 penyewaan
+        return $this->hasOne(ModelPembayaran::class,'id_penyewaan');
+        //nama_modelTabelrelasinya,foreignkey di tabel pembayaran
+    }
+    
 }

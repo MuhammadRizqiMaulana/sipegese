@@ -10,9 +10,14 @@ use App\ModelPembayaran;
 
 class HalamanKonfirmasiBayarController extends Controller
 {
-    public function index($id_penyewaan) {
+    public function index($id_penyewaan) 
+    {
+        \Carbon\Carbon::setLocale('id');
+
     	$datas = ModelPenyewaan::find($id_penyewaan);
-    	return view('user.halaman.HalamanKonfirmasiBayar',compact('datas'));
+
+        $besok = $datas->created_at->addDays(1)->format('l, d F Y H:i');
+    	return view('user.halaman.HalamanKonfirmasiBayar',compact('datas','besok'));
     }
  
 	public function cari(Request $request)
@@ -41,8 +46,13 @@ class HalamanKonfirmasiBayarController extends Controller
         $data->id_penyewaan = $request->id_penyewaan;        
         $data->bukti_pembayaran = $nama_file;
         $data->jumlah_bayar = $request->jumlah_bayar;
-        $data->status_bayar = 'menunggu Validasi';
+        $data->status_bayar = 'Menunggu Validasi';
         $data->save();
+
+        $statusSewa = ModelPenyewaan::find($request->id_penyewaan);
+        $statusSewa->status_sewa = 'Sedang Dalam Proses';
+        $statusSewa->save();
+
         return redirect('HalamanSewaGedung')->with('alert-success','Terimakasih, Data berhasil disimpan !');
     }
 }

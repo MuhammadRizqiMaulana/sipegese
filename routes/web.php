@@ -28,8 +28,10 @@ Route::get('HalamanFasilitas','HalamanFasilitasController@index');
 
 /*---<<Route halaman Informasi belum dibuat>>-------*/
 
-Route::get('HalamanSewaGedung','HalamanSewaGedungController@pilih_gedung');
-Route::post('AksiSewa','HalamanSewaGedungController@store');
+Route::get('HalamanSewaGedung','HalamanSewaGedungController@index');
+
+Route::get('FormulirSewaGedung{id_gedung}','FormulirSewaGedungController@tampil');
+Route::post('AksiSewa','FormulirSewaGedungController@store');
 
 Route::get('HalamanGaleri','HalamanGaleriController@index');
 
@@ -65,6 +67,12 @@ Route::post('AksiTambahFasilitas','CrudFasilitasController@store');
 Route::get('EditFasilitas{id_fasilitas}','CrudFasilitasController@edit');
 Route::post('AksiEditFasilitas{id_fasilitas}','CrudFasilitasController@update');
 Route::get('HapusFasilitas{id_fasilitas}','CrudFasilitasController@delete');
+
+Route::get('CrudPenyewaanGedung','CrudPenyewaanGedungController@index');
+
+Route::get('CrudPembayaranGedung','CrudPembayaranGedungController@index');
+Route::get('AksiValidasi{id_penyewaan}','CrudPembayaranGedungController@validasi');
+Route::get('AksiBayarSalah{id_pembayaran}','CrudPembayaranGedungController@bayarSalah');
 
 /*-----<<Halaman Crud Kalender Acara belum dibuat>>-------*/
 

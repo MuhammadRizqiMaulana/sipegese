@@ -36,6 +36,21 @@
           </div>
         </div>
       </li>
+      <li class="nav-item {{ Request::is('CrudPenyewaanGedung')? "active":""}}  {{ Request::is('CrudPembayaranGedung')? "active":""}}">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap2"
+          aria-expanded="true" aria-controls="collapseBootstrap2">
+          <i class="far fa-fw fa-user"></i>
+          <span>Penyewaan Gedung</span>
+        </a>
+        <div id="collapseBootstrap2" class="collapse {{ Request::is('CrudPembayaranGedung')? "show":""}} {{ Request::is('CrudPenyewaanGedung')? "show":""}} " aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Penyewaan Gedung</h6>
+            <a class="collapse-item {{ Request::is('CrudPenyewaanGedung')? "active":""}}" href="{{url ('CrudPenyewaanGedung')}}">Sewa Gedung</a>
+            <a class="collapse-item {{ Request::is('CrudPembayaranGedung')? "active":""}}" href="{{url ('CrudPembayaranGedung')}}">Pembayaran Gedung</a>
+          </div>
+        </div>
+      </li>
+      
       <li class="nav-item {{ Request::is('CrudKalenderAcara')? "active":""}}">
         <a class="nav-link" href="{{url ('CrudKalenderAcara')}}">
           <i class="far fa-fw fa-calendar"></i>

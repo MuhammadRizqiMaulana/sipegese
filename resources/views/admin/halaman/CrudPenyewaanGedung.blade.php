@@ -3,10 +3,10 @@
 <!-- Container Fluid-->
         <div class="container-fluid" id="container-wrapper">
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Data Fasilitas</h1>
+            <h1 class="h3 mb-0 text-gray-800">Data Penyewaan</h1>
             <ol class="breadcrumb">  
               <li class="breadcrumb-item"><a href="{{url ('DashboardAdmin')}}">Dashboard</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Data Fasilitas</li>
+              <li class="breadcrumb-item active" aria-current="page">Data Penyewaan</li>
             </ol>
           </div>
           <hr>
@@ -22,48 +22,41 @@
             <div class="col-lg-12">
               <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <a href="{{ url('TambahFasilitas') }}" class="btn btn-success">Tambah data</a>
-                  <h6 class="m-0 font-weight-bold text-primary">DataTables with Hover</h6>
+                  <h5 class="m-0 font-weight-bold text-primary">Penyewaan Gedung</h5>
+                  <p></p>
+                  <p></p>
+                  <p></p>
                 </div>
                 <div class="table-responsive p-3">
                   <table class="table align-items-center table-flush table-hover" id="dataTableHover">
                     <thead class="thead-light">
                       <tr>
                         <th>
-                            Id Fasilitas
+                          No
                         </th>
                         <th>
-                            Id Gedung
+                            Id Penyewaan
                         </th>
                         <th>
-                            Ruangan Tambahan
+                            Nama Gedung
                         </th>
                         <th>
-                            Toilet
+                            Tanggal Sewa
                         </th>
                         <th>
-                            Perlengkapan Operator
+                            Nama Acara
                         </th>
                         <th>
-                            Kursi
+                            Nama Penyewa
                         </th>
                         <th>
-                            Mushola
+                            Email Penyewa
                         </th>
                         <th>
-                            Fasilitas Tambahan 1
+                            Harga
                         </th>
                         <th>
-                            Fasilitas Tambahan 2
-                        </th>
-                        <th>
-                            Fasilitas Tambahan 3
-                        </th>
-                        <th>
-                            Fasilitas Tambahan 4
-                        </th>
-                        <th>
-                            Fasilitas Tambahan 5
+                            Status Sewa
                         </th>
                         <th style="width: 20%">
                           Aksi
@@ -73,40 +66,31 @@
                   <tfoot>
                       <tr>
                         <th>
-                            Id Fasilitas
+                          No
                         </th>
                         <th>
-                            Id Gedung
+                            Id Penyewaan
                         </th>
                         <th>
-                            Ruangan Tambahan
+                            Nama Gedung
                         </th>
                         <th>
-                            Toilet
+                            Tanggal Sewa
                         </th>
                         <th>
-                            Perlengkapan Operator
+                            Nama Acara
                         </th>
                         <th>
-                            Kursi
+                            Nama Penyewa
                         </th>
                         <th>
-                            Mushola
+                            Email Penyewa
                         </th>
                         <th>
-                            Fasilitas Tambahan 1
+                            Harga
                         </th>
                         <th>
-                            Fasilitas Tambahan 2
-                        </th>
-                        <th>
-                            Fasilitas Tambahan 3
-                        </th>
-                        <th>
-                            Fasilitas Tambahan 4
-                        </th>
-                        <th>
-                            Fasilitas Tambahan 5
+                            Status Sewa
                         </th>
                         <th style="width: 20%">
                           Aksi
@@ -120,22 +104,32 @@
                       @foreach($datas as $tampil)
                       <tr>
                         <td>{{$no++}}</td>
+                        <td>{{$tampil->id_penyewaan}}</td>
                         <td>{{$tampil->Gedung->nama_gedung}}</td>
-                        <td>{{$tampil->ruangan_tambahan}}</td>
-                        <td>{{$tampil->toilet}}</td>
-                        <td>{{$tampil->perlengkapan_operator}}</td>
-                        <td>{{$tampil->kursi}}</td>
-                        <td>{{$tampil->musholah}}</td>
-                        <td>{{$tampil->fasilitas_tambahan1}}</td>
-                        <td>{{$tampil->fasilitas_tambahan2}}</td>
-                        <td>{{$tampil->fasilitas_tambahan3}}</td>
-                        <td>{{$tampil->fasilitas_tambahan4}}</td>
-                        <td>{{$tampil->fasilitas_tambahan5}}</td>                        
+                        <td>{{$tampil->tanggal_sewa}}</td>
+                        <td>{{$tampil->nama_acara}}</td>
+                        <td>{{$tampil->nama_penyewa}}</td>
+                        <td>{{$tampil->email_penyewa}}</td>
+                        <td>@currency($tampil->Gedung->harga)</td>
                         <td>
-                          <a href="EditFasilitas{{$tampil->id_fasilitas}}" class="btn btn-warning">
+                          @if ($tampil->status_sewa == 'Menunggu Pembayaran')
+                            <span class="badge badge-warning">{{$tampil->status_sewa}}</span>
+                          @elseif ($tampil->status_sewa == 'Sedang Dalam Proses')
+                            <span class="badge badge-info">{{$tampil->status_sewa}}</span>
+                          @elseif ($tampil->status_sewa == 'Disewa')
+                            <span class="badge badge-primary">{{$tampil->status_sewa}}</span>
+                          @elseif ($tampil->status_sewa == 'Selesai')
+                            <span class="badge badge-success">{{$tampil->status_sewa}}</span>
+                          @elseif ($tampil->status_sewa == 'Batal')
+                            <span class="badge badge-danger">{{$tampil->status_sewa}}</span>
+                          @endif
+                        </td>
+                        
+                        <td>
+                          <a href="EditPenyewaan{{$tampil->id_penyewaan}}" class="btn btn-warning">
                             <i class="fas fa-pencil-alt"></i>
                           </a>
-                          <a href="HapusFasilitas{{$tampil->id_fasilitas}}" class="btn btn-danger">
+                          <a href="HapusPenyewaan{{$tampil->id_penyewaan}}" class="btn btn-danger">
                             <i class="fas fa-trash"></i>
                           </a>
                         </td>

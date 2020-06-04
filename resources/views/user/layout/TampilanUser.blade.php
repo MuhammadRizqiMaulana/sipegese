@@ -19,6 +19,8 @@
 	<link rel="stylesheet" href="{{ asset('vendors/animate-css/animate.css') }}">
 	<!-- main css -->
 	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
+
 </head>
 
 <body>
@@ -54,6 +56,37 @@
 	<!--gmaps Js-->
 	<script src="{{ asset('js/gmaps.min.js') }}"></script>
 	<script src="{{ asset('js/theme.js') }}"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		
+		<?php if (isset($tgl)): ?>
+			var datesToBeDisabled = <?php echo json_encode($tgl);  ?>;
+
+			$.ajaxSetup({
+				headers:{
+					'X-CSRF-TOKEN':$('meta[name="_token"]').attr('content')
+				}
+			})
+		<?php endif ?>
+		
+
+		$('#tanggalan').datepicker({
+			beforeShowDay: function (date) {
+              var dateStr = jQuery.datepicker.formatDate('yy-mm-dd', date);
+                  return [datesToBeDisabled.indexOf(dateStr) == -1];
+          	},
+
+          	dateFormat: 'yy-mm-dd',
+	        minDate: '-Infinity +1d',
+	        showOn: 'button',
+	        buttonImage: 'img/calendar.png',
+	        buttonImageOnly: true
+
+	        
+
+		});		
+	});
+</script>
 </body>
 
 </html>

@@ -1,6 +1,7 @@
 @extends('user.layout.TampilanUser')
 @section('content')
-		<!--================ Start Home Banner Area =================-->
+
+<!--================ Start Home Banner Area =================-->
 		<section class="home_banner_area common-banner">
 			<div class="banner_inner">
 				<div class="container-fluid no-padding">
@@ -17,7 +18,15 @@
 					<div class="row d-flex align-items-center">
 						<div class="col-lg-7 col-md-12">
 							<h1>Sewa Gedung</h1>
-							<p>...Kalender...</p>
+							@if(\Session::has('alert-success'))
+			                    <div class="alert alert-success alert-dismissible" role="alert">
+			                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			                          <span aria-hidden="true">&times;</span>
+			                        </button>
+			                        {{Session::get('alert-success')}}
+			                    </div>
+			                  @endif
+					
 						</div>
 						<div class="col-lg-5 col-md-12">
 							<div class="page-link-wrap">
@@ -33,81 +42,43 @@
 		</div>
 		<!-- End banner bottom -->
 		<!--================ End Home Banner Area =================-->
-		<br><br><br><br>
 
-		<div class="container">
-			<div class="response"></div>
-			<div id='calendar'></div>
-		</div>
-		<!--================ Start Reservstion Area =================-->
-		<section class="reservation-area section_gap_top">
+<!--================ Menu Area =================-->
+		<section class="menu_area section_gap">
 			<div class="container">
-				<div class="row align-items-center justify-content-center">
-					<div class="col-lg-6 offset-lg-6">
+				<div class="row menu_inner">
+					@foreach($datas as $tampil)
+					<div class="col-lg-4 col-sm-6 mt-sm-30 typo-sec">
+						<h1 class="mb-20 title_color text-center">{{$tampil->nama_gedung}}</h1>
+						<a href="{{ url('img/gedung/'.$tampil->gambar_gedung) }}" class="img-gal">
+								<div class="single-gallery-image" style="background: url({{ url('img/gedung/'.$tampil->gambar_gedung) }});"></div>
+							</a>
+						<hr>
 
-						<div class="contact-form-section">
-
-				@if(\Session::has('alert-success'))
-                    <div class="alert alert-success alert-dismissible" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                        {{Session::get('alert-success')}}
-                    </div>
-                  @endif
-
-							<h1>Formulir Penyewaan Gedung</h1>
-							<form class="contact-form-area contact-page-form contact-form text-right" action="{{url('AksiSewa')}}" method="post">
-								{{csrf_field()}}
-								<div class="form-group col-md-12">
-									<table>
-										<tr>
-											<td>Id Penyewaan	: </td>
-											<td>
-												<input type="text" class="form-control" id="id_penyewaan" name="id_penyewaan" placeholder="Id Penyewaan" onfocus="this.placeholder = ''"
-									 onblur="this.placeholder = 'Id Penyewaan'" value=" S-{{ rand() }}" readonly>
-											</td>
-										</tr>
-									</table>
-									
-								</div>
-								<div class="form-group col-md-12">
-									<div class="form-select">
-										<select name="gedung">
-											<option>Pilih gedung</option>
-											@foreach($datas as $gedung)
-											<option value="{{$gedung->id_gedung}}">{{$gedung->nama_gedung}}</option>
-											@endforeach
-										<select>
-									</div>
-								</div>
-								<div class="form-group col-md-12">
-									<input type="text" class="form-control" id="datepicker" name="tanggal_sewa" placeholder="Pilih Tanggal Sewa" onfocus="this.placeholder = ''"
-									 onblur="this.placeholder = 'Pilih Tanggal Sewa'">
-								</div>
-								<div class="form-group col-md-12">
-									<input type="text" class="form-control" id="nama_acara" name="nama_acara" placeholder="Masukkan Nama Acara" onfocus="this.placeholder = ''"
-									 onblur="this.placeholder = 'Masukkan Nama Acara'">
-								</div>
-								<div class="form-group col-md-12">
-									<input type="text" class="form-control" id="nama_penyewa" name="nama_penyewa" placeholder="Masukkan Nama Penyewa" onfocus="this.placeholder = ''"
-									 onblur="this.placeholder = 'Masukkan Nama Penyewa'">
-								</div>
-								<div class="form-group col-md-12">
-									<input type="email" class="form-control" id="email" name="email" placeholder="Masukkan Email" onfocus="this.placeholder = ''"
-									 onblur="this.placeholder = 'Masukkan Email'">
-								</div>
-								
-								<div class="col-lg-12 text-center">
-									
-									<button type="Submit" class="genric-btn info circle arrow e-large">SEWA<span class="lnr lnr-arrow-right"></span></button>
-								</div>
-							</form>
+						<div class="form-group">
+							<label><strong>Deskripsi</strong></label>
+							<input type="text" class="single-input" value="{{$tampil->deskripsi}}" readonly>
 						</div>
+						<hr>
+						<div class="form-group">
+							<label><strong>Alamat</strong></label>
+							<textarea class="single-input" readonly>{{$tampil->alamat}}</textarea>
+						</div>
+						<hr>
+						<div class="form-group">
+							<label><strong>Harga</strong></label>
+							<input type="text" class="single-input" value="@currency($tampil->harga)" readonly>
+						</div>
+						<hr>
+						<div class="text-center">
+							<a href="FormulirSewaGedung{{$tampil->id_gedung}}" class="genric-btn primary-border circle arrow">SEWA<span class="lnr lnr-arrow-right"></span></a>
+						</div>
+
 					</div>
+					@endforeach
+					
 				</div>
 			</div>
 		</section>
-		<!--================ End Reservstion Area =================-->
-		<br><br>		
+		<!--================End Menu Area =================-->
 @endsection

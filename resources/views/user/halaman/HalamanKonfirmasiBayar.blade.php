@@ -79,11 +79,32 @@
                                                         <td>
                                                             <input type="text" name="harga" class="single-input" value="@currency($datas->Gedung->harga)" disabled>
                                                         </td>
-                                                    </tr>                                            
+                                                    </tr>                                              
                                             </table>
                                             <hr>
+                                            <table>
+                                                <tr>
+                                                        <td><strong>Status Penyewaan</strong></td>
+                                                        <td> : </td>
+                                                        <td>
+                                                            <input type="text" name="status_sewa" class="single-input" value="{{$datas->status_sewa}}" disabled>
+                                                        </td>
+                                                    </tr>
+                                            </table>
+                                            <hr>
+                                            @if($datas->status_sewa == 'Menunggu Pembayaran')
                                             <strong>Silahkan Melakukan Pembayaran</Strong>
                                             <b><p>@currency($datas->Gedung->harga)</p></b>
+                                            <strong>Sebelum :</strong>
+                                            <label><b>{{$besok}}</b></label>
+
+
+                                            @endif
+
+                                            @if($datas->status_sewa != 'Menunggu Pembayaran')
+                                                <strong>Status Bayar : </Strong><b><p>{{$datas->Pembayaran->status_bayar}}</p></b>
+                                                
+                                            @endif                                           
                                         </div>
                                     </div>
                                 </div>
@@ -130,19 +151,20 @@
                                 <div class="text-center">
                                     <table>
                                         <tr>
-                                            <td><input type="file" name="bukti_pembayaran" class="form-control"></td>
+                                            <td><input type="file" name="bukti_pembayaran" class="form-control" {{ ($datas->status_sewa == 'Menunggu Pembayaran') ? '' : 'disabled'}}></td>
                                         </tr>
                                         <tr>
-                                            <td><input type="text" class="form-control" name="jumlah_bayar" placeholder="Masukkan Jumlah Transfer"></td>
+                                            <td><input type="text" class="form-control" name="jumlah_bayar" placeholder="Masukkan Jumlah Transfer" {{ ($datas->status_sewa == 'Menunggu Pembayaran') ? '' : 'disabled'}}></td>
                                         </tr>
                                     </table>
                                     <br>
-                                    <button type="Submit" class="genric-btn danger-border circle arrow text-uppercase">Konfirmasi Pembayaran<span class="lnr lnr-arrow-right"></span></button>
+                                    <button type="Submit" class="genric-btn danger-border circle arrow text-uppercase" {{ ($datas->status_sewa == 'Menunggu Pembayaran') ? '' : 'disabled'}}>Konfirmasi Pembayaran<span class="lnr lnr-arrow-right"></span></button>
                                 </div>
-
                             </aside>
                 </form>        
                          </div>
                       </div>
 				</section>
 @endsection
+
+
