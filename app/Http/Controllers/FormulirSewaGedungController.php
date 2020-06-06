@@ -40,7 +40,7 @@ class FormulirSewaGedungController extends Controller
         $this->validate($request, [
             'id_penyewaan' => 'required|unique:penyewaan',
             'gedung' => 'required',
-            'tanggal_sewa' => 'nullable',
+            'tanggal_sewa' => 'required',
             'nama_acara' => 'required',
             'nama_penyewa' => 'required', 
             'email' => 'required',

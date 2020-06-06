@@ -10,6 +10,15 @@
 						<div class="contact-form-section">
 
 					<h1>Formulir Penyewaan Gedung</h1><hr>
+				@if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
                   		<table>
                   			<tr>
                   				<td width="400" valign="top">
@@ -25,32 +34,32 @@
 								<input type="text" name="gedung" value="{{$datas->id_gedung}}" hidden>
 								<div class="form-group col-md-9">
 									<input type="text" class="form-control" id="tanggalan" name="tanggal_sewa" placeholder="Pilih Tanggal Sewa" onfocus="this.placeholder = ''"
-									 onblur="this.placeholder = 'Pilih Tanggal Sewa'">
+									 onblur="this.placeholder = 'Pilih Tanggal Sewa'" required>
 								</div>
 								<div class="form-group col-md-9">
 									<input type="text" class="form-control" id="nama_acara" name="nama_acara" placeholder="Masukkan Nama Acara" onfocus="this.placeholder = ''"
-									 onblur="this.placeholder = 'Masukkan Nama Acara'">
+									 onblur="this.placeholder = 'Masukkan Nama Acara'" required>
 								</div>
 
 					@if(Session::get('login'))
 								<input type="text" name="id_user" value="{{Session::get('id_user')}}" hidden>
 								<div class="form-group col-md-9">
 									<input type="text" class="form-control" id="nama_penyewa" name="nama_penyewa" placeholder="Masukkan Nama Penyewa" onfocus="this.placeholder = ''"
-									 onblur="this.placeholder = 'Masukkan Nama Penyewa'" value="{{Session::get('nama')}}">
+									 onblur="this.placeholder = 'Masukkan Nama Penyewa'" value="{{Session::get('nama')}}" required>
 								</div>
 								<div class="form-group col-md-9">
 									<input type="email" class="form-control" id="email" name="email" placeholder="Masukkan Email" onfocus="this.placeholder = ''"
-									 onblur="this.placeholder = 'Masukkan Email'" value="{{Session::get('email')}}">
+									 onblur="this.placeholder = 'Masukkan Email'" value="{{Session::get('email')}}" required>
 								</div>
 
 					@else
 								<div class="form-group col-md-9">
 									<input type="text" class="form-control" id="nama_penyewa" name="nama_penyewa" placeholder="Masukkan Nama Penyewa" onfocus="this.placeholder = ''"
-									 onblur="this.placeholder = 'Masukkan Nama Penyewa'">
+									 onblur="this.placeholder = 'Masukkan Nama Penyewa'" required>
 								</div>
 								<div class="form-group col-md-9">
 									<input type="email" class="form-control" id="email" name="email" placeholder="Masukkan Email" onfocus="this.placeholder = ''"
-									 onblur="this.placeholder = 'Masukkan Email'">
+									 onblur="this.placeholder = 'Masukkan Email'" required>
 								</div>
 					@endif
 								

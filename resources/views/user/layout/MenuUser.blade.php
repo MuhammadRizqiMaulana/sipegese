@@ -18,6 +18,7 @@
 					<li class="nav-item"><a class="nav-link" href="#"><img src="img/header/nav-icon3.png" alt="">Informasi</a></li>
 					<li class="nav-item"><a class="nav-link" href="{{url('HalamanSewaGedung')}}"><img src="img/header/nav-icon2.png" alt="">Sewa Gedung</a></li>
 					<li class="nav-item"><a class="nav-link" href="{{url('HalamanGaleri')}}"><img src="img/header/nav-icon8.png" alt="">Galeri</a></li>	
+					<li class="nav-item"><a class="nav-link" href="{{url('HalamanKonfirmasiBayar')}}"><img src="img/header/nav-icon7.png" alt="">Pembayaran</a></li>	
 
 					@if(Session::get('login'))
 					<li class="nav-item submenu dropdown">

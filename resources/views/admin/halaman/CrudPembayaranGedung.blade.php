@@ -10,14 +10,15 @@
             </ol>
           </div>
           <hr>
-          @if(\Session::has('alert-success'))
-                    <div class="alert alert-success alert-dismissible" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                        {{Session::get('alert-success')}}
-                    </div>
-                  @endif
+          @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
           <!-- DataTable with Hover -->
             <div class="col-lg-12">
               <div class="card mb-4">
@@ -137,7 +138,7 @@
                           @endif
                         </td>
                         <td>
-                          <a class="btn btn-success btn-sm" href="AksiValidasi{{$tampil->id_penyewaan}}">
+                          <a class="btn btn-success btn-sm" href="AksiValidasi{{$tampil->id_penyewaan}}" aria-disabled="true" disabled>
                             <i class="fas fa-check"></i>Konfirmasi
                           </a>
                           <a class="btn btn-danger btn-sm" href="AksiBayarSalah{{$tampil->Pembayaran->id_pembayaran}}">

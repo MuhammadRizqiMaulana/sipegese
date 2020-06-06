@@ -35,12 +35,13 @@ Route::post('AksiSewa','FormulirSewaGedungController@store');
 
 Route::get('HalamanGaleri','HalamanGaleriController@index');
 
+Route::get('HalamanKonfirmasiBayar{id_penyewaan}','HalamanKonfirmasiBayarController@index');
+Route::post('AksiKonfirmasiBayar','HalamanKonfirmasiBayarController@store');
+
 Route::get('HalamanKonfirmasiBayar', function () {
     return view('user.halaman.HalamanKonfirmasiBayar');
 });
-Route::get('HalamanKonfirmasiBayar{id_penyewaan}','HalamanKonfirmasiBayarController@index');
-Route::get('HalamanKonfirmasiBayar/cari','HalamanKonfirmasiBayarController@cari');
-Route::post('AksiKonfirmasiBayar','HalamanKonfirmasiBayarController@store');
+Route::get('CariHalamanKonfirmasiBayar','CariHalamanKonfirmasiBayarController@cari');
 
 /*------End Halaman User------------*/
 

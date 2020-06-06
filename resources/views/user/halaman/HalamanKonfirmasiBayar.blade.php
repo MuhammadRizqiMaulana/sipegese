@@ -13,7 +13,7 @@
                                     <h1>Rincian Penyewaan</h1>                               
                                 </div>
                                 <div class="col-md-6">
-                                    <form action="{{url('HalamanKonfirmasiBayar/cari')}}" method="GET">
+                                    <form action="{{url('CariHalamanKonfirmasiBayar')}}" method="GET">
                                         <div class="input-group">
                                             <input type="text" name="q" class="form-control" placeholder="Kode Penyewaan">
                                             <span class="input-group-btn">
@@ -35,33 +35,63 @@
                                                 <tr>
                                                     <td>Kode Penyewaan</td>
                                                     <td> : </td>
-                                                    <td><input type="text" name="id_penyewaan" class="single-input" value="{{$datas->id_penyewaan}}" disabled></td>
+                                                    <td><input type="text" name="id_penyewaan" class="single-input" 
+                                                        @if(isset($datas))
+                                                            value="{{$datas->id_penyewaan}}"
+                                                        @endif
+
+                                                        disabled></td>
 
                                                 </tr>
                                                 <tr>
                                                     <td>Nama Gedung</td>
                                                     <td> : </td>
-                                                    <td><input type="text" name="id_gedung" class="single-input" value="{{$datas->Gedung->nama_gedung}}" disabled></td>
+                                                    <td><input type="text" name="id_gedung" class="single-input" 
+
+                                                    @if(isset($datas))
+                                                        value="{{$datas->Gedung->nama_gedung}}" 
+                                                    @endif
+                                                        disabled></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Tanggal Sewa</td>
                                                     <td> : </td>
-                                                    <td><input type="text" name="tanggal_sewa" class="single-input" value="{{$datas->tanggal_sewa}}" disabled></td>
+                                                    <td><input type="text" name="tanggal_sewa" class="single-input" 
+
+                                                    @if(isset($datas))
+                                                        value="{{$datas->tanggal_sewa}}"
+                                                    @endif
+                                                         disabled></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Nama Acara</td>
                                                     <td> : </td>
-                                                    <td><input type="text" name="nama_acara" class="single-input" value="{{$datas->nama_acara}}" disabled></td>
+                                                    <td><input type="text" name="nama_acara" class="single-input" 
+
+                                                    @if(isset($datas))
+                                                        value="{{$datas->nama_acara}}"
+                                                    @endif
+                                                        disabled></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Nama Penyewa</td>
                                                     <td> : </td>
-                                                    <td><input type="text" name="nama_penyewa" class="single-input" value="{{$datas->nama_penyewa}}" disabled></td>
+                                                    <td><input type="text" name="nama_penyewa" class="single-input" 
+
+                                                    @if(isset($datas))
+                                                        value="{{$datas->nama_penyewa}}" 
+                                                    @endif
+                                                        disabled></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Email Penyewa</td>
                                                     <td> : </td>
-                                                    <td><input type="text" name="email_penyewa" class="single-input" value="{{$datas->email_penyewa}}" disabled></td>
+                                                    <td><input type="text" name="email_penyewa" class="single-input"
+
+                                                    @if(isset($datas))
+                                                        value="{{$datas->email_penyewa}}" 
+                                                    @endif
+                                                        disabled></td>
                                                 </tr>
                                             </table>
                                             
@@ -77,7 +107,12 @@
                                                         <td>Harga</td>
                                                         <td> : </td>
                                                         <td>
-                                                            <input type="text" name="harga" class="single-input" value="@currency($datas->Gedung->harga)" disabled>
+                                                            <input type="text" name="harga" class="single-input"
+
+                                                            @if(isset($datas))
+                                                                value="@currency($datas->Gedung->harga)"
+                                                            @endif
+                                                                 disabled>
                                                         </td>
                                                     </tr>                                              
                                             </table>
@@ -87,16 +122,23 @@
                                                         <td><strong>Status Penyewaan</strong></td>
                                                         <td> : </td>
                                                         <td>
-                                                            <input type="text" name="status_sewa" class="single-input" value="{{$datas->status_sewa}}" disabled>
+                                                            <input type="text" name="status_sewa" class="single-input"
+
+                                                        @if(isset($datas))
+                                                            value="{{$datas->status_sewa}}" 
+                                                        @endif
+                                                            disabled>
                                                         </td>
                                                     </tr>
                                             </table>
                                             <hr>
+
+                                        @if(isset($datas))
                                             @if($datas->status_sewa == 'Menunggu Pembayaran')
                                             <strong>Silahkan Melakukan Pembayaran</Strong>
                                             <b><p>@currency($datas->Gedung->harga)</p></b>
                                             <strong>Sebelum :</strong>
-                                            <label><b>{{$besok}}</b></label>
+                                            <label><b><u>{{$besok}} WIB</u></b></label>
 
 
                                             @endif
@@ -104,7 +146,19 @@
                                             @if($datas->status_sewa != 'Menunggu Pembayaran')
                                                 <strong>Status Bayar : </Strong><b><p>{{$datas->Pembayaran->status_bayar}}</p></b>
                                                 
-                                            @endif                                           
+                                            @endif
+                                        @else
+
+                            @if(\Session::has('alert-danger'))
+                                <div class="alert alert-danger alert-dismissible" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    {{Session::get('alert-danger')}}
+                                </div>
+                             @endif        
+
+                                        @endif                                   
                                         </div>
                                     </div>
                                 </div>
@@ -145,20 +199,45 @@
             <form action="AksiKonfirmasiBayar" method="post" enctype="multipart/form-data">
 
             {{csrf_field()}}    
-            <input type="hidden" name="id_penyewaan" class="form-control" value="{{$datas->id_penyewaan}}" >
+            <input type="hidden" name="id_penyewaan" class="form-control"
+            @if(isset($datas))
+                value="{{$datas->id_penyewaan}}" 
+            @endif
+                >
 
                                 <h3 class="widget_title">Bukti Pembayaran</h3>
                                 <div class="text-center">
                                     <table>
                                         <tr>
-                                            <td><input type="file" name="bukti_pembayaran" class="form-control" {{ ($datas->status_sewa == 'Menunggu Pembayaran') ? '' : 'disabled'}}></td>
+                                            <td><input type="file" name="bukti_pembayaran" class="form-control" 
+
+                                            @if(isset($datas))
+                                                {{ ($datas->status_sewa == 'Menunggu Pembayaran') ? '' : 'disabled'}} 
+                                            @else
+                                                disabled
+                                            @endif
+                                                required></td>
                                         </tr>
                                         <tr>
-                                            <td><input type="text" class="form-control" name="jumlah_bayar" placeholder="Masukkan Jumlah Transfer" {{ ($datas->status_sewa == 'Menunggu Pembayaran') ? '' : 'disabled'}}></td>
+                                            <td><input type="text" class="form-control" name="jumlah_bayar" placeholder="Masukkan Jumlah Transfer"
+
+                                            @if(isset($datas))
+                                                {{ ($datas->status_sewa == 'Menunggu Pembayaran') ? '' : 'disabled'}} 
+                                            @else
+                                                disabled
+                                            @endif
+                                                required></td>
                                         </tr>
                                     </table>
                                     <br>
-                                    <button type="Submit" class="genric-btn danger-border circle arrow text-uppercase" {{ ($datas->status_sewa == 'Menunggu Pembayaran') ? '' : 'disabled'}}>Konfirmasi Pembayaran<span class="lnr lnr-arrow-right"></span></button>
+                                    <button type="Submit" class="genric-btn danger-border circle arrow text-uppercase" 
+
+                                @if(isset($datas))
+                                    {{ ($datas->status_sewa == 'Menunggu Pembayaran') ? '' : 'disabled'}}
+                                @else
+                                    disabled
+                                @endif
+                                    >Konfirmasi Pembayaran<span class="lnr lnr-arrow-right"></span></button>
                                 </div>
                             </aside>
                 </form>        
