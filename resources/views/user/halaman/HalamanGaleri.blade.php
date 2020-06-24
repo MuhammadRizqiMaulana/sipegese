@@ -41,6 +41,7 @@
 				<div class="section-top-border">
 					<h3 class="title_color">Image Gallery</h3>
 					<div class="row gallery-item">
+					@if(isset($datas))
 						@foreach($datas as $tampil)
 						<div class="col-md-4">
 							<a href="{{ url('img/galeri/'.$tampil->gambar_galeri) }}" class="img-gal">
@@ -48,6 +49,7 @@
 							</a>
 						</div>
 						@endforeach
+					@endif
 					
 					</div>
 				</div>

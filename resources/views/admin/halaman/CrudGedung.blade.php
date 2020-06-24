@@ -32,27 +32,16 @@
                     <thead class="thead-light">
                       <tr>
                         <th>No</th>
-                        <th>Id Gedung</th>
+                        <th>Gambar</th>
                         <th>Nama Gedung</th>
-                        <th>alamat</th>
-                        <th>deskripsi</th>
-                        <th>harga</th>
-                        <th>gambar</th>
+                        <th>Harga</th>
+                        <th>Deskripsi</th>
+                        <th>Alamat</th> 
+                        <th>Fasilitas</th>                      
                         <th></th>
                       </tr>
                     </thead>
-                    <tfoot>
-                      <tr>
-                        <th>No</th>
-                        <th>Id Gedung</th>
-                        <th>Nama Gedung</th>
-                        <th>alamat</th>
-                        <th>deskripsi</th>
-                        <th>harga</th>
-                        <th>gambar</th>
-                        <th></th>
-                      </tr>
-                    </tfoot>
+
                     <tbody>
                       @php
                         $no=1;
@@ -60,21 +49,35 @@
                       @foreach($datas as $tampil)
                       <tr>
                         <td>{{$no++}}</td>
-                        <td>{{$tampil->id_gedung}}</td>
-                        <td>{{$tampil->nama_gedung}}</td>
-                        <td>{{$tampil->alamat}}</td>
-                        <td>{{$tampil->deskripsi}}</td>
-                        <td>{{$tampil->harga}}
-                        </td>
                         <td>
                             <img width="150px" src="{{ url('img/gedung/'.$tampil->gambar_gedung) }}">
                         </td>
-                        
+                        <td>{{$tampil->nama_gedung}}</td>
+                        <td>
+                          @currency($tampil->harga)
+                        </td>
+                        <td>{{$tampil->deskripsi}}</td>
+                        <td>{{$tampil->alamat}}</td>
+                        <td>
+                          @if(isset($tampil->Fasilitas))
+                            <a class="btn btn-outline-info btn-sm" href="LihatFasilitasGedung{{$tampil->id_gedung}}">
+                              <i class="fas fa-eye"></i>
+                              Lihat Fasilitas
+                            </a>
+                          @else
+                            <b>Belum Ada Fasilitas !</b>
+                            <a class="btn btn-outline-danger btn-sm" href="TambahFasilitas">
+                              <i class="fas fa-pencil-alt"></i>
+                              Tambahkan Fasilitas
+                            </a>
+
+                          @endif
+                        </td>
                         <td>
                           <a href="EditGedung{{$tampil->id_gedung}}" class="btn btn-warning">
                             <i class="fas fa-pencil-alt"></i>
                           </a>
-                          <a href="HapusGedung{{$tampil->id_gedung}}" class="btn btn-danger">
+                          <a href="HapusGedung{{$tampil->id_gedung}}" class="btn btn-danger" onclick="return confirm('Anda yakin mau menghapus item ini ?')">
                             <i class="fas fa-trash"></i>
                           </a>
                         </td>

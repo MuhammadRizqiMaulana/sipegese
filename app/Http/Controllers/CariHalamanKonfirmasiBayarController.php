@@ -24,7 +24,7 @@ class CariHalamanKonfirmasiBayarController extends Controller
 
             $besok = $datas->created_at->addDays(1)->format('l, d F Y H:i');
             
-            return view('user.halaman.HalamanKonfirmasiBayar', compact('datas','besok')); 
+            return view('user.halaman.HalamanKonfirmasiBayar', compact('datas','besok'));
 
         }
 

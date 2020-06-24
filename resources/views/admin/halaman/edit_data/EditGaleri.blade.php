@@ -20,22 +20,6 @@
                   <h6 class="m-0 font-weight-bold text-primary">Ubah Data Galeri</h6>
                 </div>
                 <div class="card-body">
-                    <!------------ Alert----------->
-
-                      @if($errors->any())
-                              <div class="alert alert-danger alert-dismissible" role="alert">
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                      <span aria-hidden="true">&times;</span>
-                                    </button>
-                                    <ul>
-                                      @foreach ($errors->all() as $error)
-                                      <li>{{$error}}</li>
-                                      @endforeach
-                                    </ul>
-                              </div>
-                            @endif
-
-                    <!------------ Alert----------->
 
                   <form enctype="multipart/form-data" class="contact-form-area contact-page-form contact-form text-left" action="AksiEditGaleri{{$datas->id_galeri}}" method="post">
 
@@ -45,7 +29,7 @@
                       <div class="form-select">
                         <label><b>Pilih gedung</b></label>
                         <select name="gedung" class="form-control">
-                          <option>Pilih gedung</option>
+                          <option value="">Pilih gedung</option>
 @foreach($gedungs as $gedung)
     <option value="{{$gedung->id_gedung}}" {{ ($datas->id_gedung == $gedung->id_gedung) ? 'selected' : ''}}>
 
@@ -53,28 +37,28 @@
 @endforeach
                         </select>
                       </div>
+                      @if ($errors->has('gedung'))
+                        <span class="text-danger"><p class="text-right">* {{ $errors->first('gedung') }}</p></span>
+                    @endif
                     </div>
 
                     <div class="form-group">
                       <label><b>Nama Galeri</b></label>
                       <input type="text" class="form-control" name="nama_galeri" placeholder="Masukkan Nama Gedung" value="{{$datas->nama_galeri}}">
 
-                          @if($errors->has('nama_galeri'))
-                            <div class="text-danger">
-                              {{$errors->first('nama_galeri')}}
-                            </div>
-                          @endif
+                    @if ($errors->has('nama_galeri'))
+                        <span class="text-danger"><p class="text-right">* {{ $errors->first('nama_galeri') }}</p></span>
+                    @endif
                     </div>
 
                     <div class="form-group">
                       <label><b>Gambar Galeri</b></label>
                       <input type="file" class="form-control" name="gambar_galeri">
+                        <span class="text-primary"><p class="text-left">- Maksimal Ukuran 2 Mb</p></span>
 
-                          @if($errors->has('gambar_galeri'))
-                            <div class="text-danger">
-                              {{$errors->first('gambar_galeri')}}
-                            </div>
-                          @endif
+                    @if ($errors->has('gambar_galeri'))
+                        <span class="text-danger"><p class="text-right">* {{ $errors->first('gambar_galeri') }}</p></span>
+                    @endif
                     </div>
 
                     <div class="form-group"> 

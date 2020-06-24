@@ -14,16 +14,7 @@
 		<!-- Start banner bottom -->
 		<div class="row banner-bottom align-items-center justify-content-center">
 			<div class="col-lg-4">
-				<div class="video-popup d-flex align-items-center">
-					<a class="play-video video-play-button animate" href="https://www.youtube.com/watch?v=KUln2DXU5VE" data-animate="zoomIn"
-					 data-duration="1.5s" data-delay="0.1s">
-						<span><img src="img/banner/play-icon.png" alt=""></span>
-					</a>
-					<div class="watch">
-						<h6>Lihat Video</h6>
-						<p>You will love our execution</p>
-					</div>
-				</div>
+				
 			</div>
 			<div class="col-lg-8">
 				<div class="banner_content">
@@ -53,55 +44,62 @@
 						<div class="contact-form-section">
 							<h1>Formulir Register</h1>
 
-							<!------------ Alert----------->
-
-							@if($errors->any())
-								<div class="alert alert-danger alert-dismissible" role="alert">
-				                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				                      <span aria-hidden="true">&times;</span>
-				                    </button>
-				                    <ul>
-				                    	@foreach ($errors->all() as $error)
-				                    	<li>{{$error}}</li>
-				                    	@endforeach
-				                    </ul>
-				            	</div>
-				            @endif
-
-				            <!------------ Alert----------->
-
 							<form class="contact-form-area contact-page-form contact-form text-right" action="{{url('registerPost')}}" method="post">
 
 								{{csrf_field()}}
 
 								<div class="form-group col-md-12">
-									<input type="email" class="form-control" id="email" name="email" placeholder="Masukkan Email" onfocus="this.placeholder = ''"
+									<input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama Lengkap" onfocus="this.placeholder = ''"
+									 onblur="this.placeholder = 'Masukkan Nama Lengkap'">
+
+									 @if ($errors->has('nama'))
+		                                <span class="text-danger"><p class="text-right">* {{ $errors->first('nama') }}</p></span>
+		                            @endif
+								</div>
+								<div class="form-group col-md-12">
+									<input type="text" class="form-control" id="email" name="email" placeholder="Masukkan Email" onfocus="this.placeholder = ''"
 									 onblur="this.placeholder = 'Masukkan Email'">
+
+									@if ($errors->has('email'))
+		                                <span class="text-danger"><p class="text-right">* {{ $errors->first('email') }}</p></span>
+		                            @endif
 								</div>
 								<div class="form-group col-md-12">
 									<input type="password" class="form-control" id="password" name="password" placeholder="Masukkan Password" onfocus="this.placeholder = ''"
 									 onblur="this.placeholder = 'Masukkan Password'">
+
+									 @if ($errors->has('password'))
+		                                <span class="text-danger"><p class="text-right">* {{ $errors->first('password') }}</p></span>
+		                            @endif
 								</div>
 								<div class="form-group col-md-12">
-									<input type="password" class="form-control" id="confirmation" name="confirmation" placeholder="Masukkan Password Confirmation" onfocus="this.placeholder = ''"
-									 onblur="this.placeholder = 'Masukkan Password Confirmation'">
+									<input type="password" class="form-control" id="confirmation" name="confirmation" placeholder="Ulangi Password" onfocus="this.placeholder = ''"
+									 onblur="this.placeholder = 'Ulangi Password'">
+
+									 @if ($errors->has('confirmation'))
+		                                <span class="text-danger"><p class="text-right">* {{ $errors->first('confirmation') }}</p></span>
+		                            @endif
 								</div>
 								<div class="form-group col-md-12">
-									<input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama Lengkap" onfocus="this.placeholder = ''"
-									 onblur="this.placeholder = 'Masukkan Nama Lengkap'">
-								</div>
-								<div class="form-group col-md-12">
-									<input type="number" min="0" class="form-control" id="no_telp" name="no_telp" placeholder="Masukkan Nomor Telepon" onfocus="this.placeholder = ''"
+									<input type="text" class="form-control" id="no_telp" name="no_telp" placeholder="Masukkan Nomor Telepon" onfocus="this.placeholder = ''"
 									 onblur="this.placeholder = 'Masukkan Nomor Telepon'">
+
+									 @if ($errors->has('no_telp'))
+		                                <span class="text-danger"><p class="text-right">* {{ $errors->first('no_telp') }}</p></span>
+		                            @endif
 								</div>
 								<div class="form-group col-md-12">
-									<input type="text" class="form-control" id="alamat" name="alamat" placeholder="Masukkan Alamat" onfocus="this.placeholder = ''"
-									 onblur="this.placeholder = 'Masukkan Alamat'">
+									<textarea class="form-control" id="alamat" name="alamat" placeholder="Masukkan Alamat" onfocus="this.placeholder = ''"
+									 onblur="this.placeholder = 'Masukkan Alamat'"></textarea>
+
+									 @if ($errors->has('alamat'))
+		                                <span class="text-danger"><p class="text-right">* {{ $errors->first('alamat') }}</p></span>
+		                            @endif
 								</div>
 								
 								<div class="col-lg-12 text-center">
 									<input type="submit" class="primary-btn text-uppercase" value="Daftar">
-									<input type="reset" class="danger-btn text-uppercase" value="Batal">
+									<input type="reset" class="btn btn-warning text-uppercase" value="Batal">
 								</div>
 							</form>
 						</div>
@@ -111,5 +109,5 @@
 		</section>
 		<!--================ End Reservstion Area =================-->
 
-			<br>	<br>
+			<br><br><br><br><br><br><br><br>
 @endsection

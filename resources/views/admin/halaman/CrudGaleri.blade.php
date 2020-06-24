@@ -23,28 +23,18 @@
               <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                   <a href="{{url ('TambahGaleri')}}" class="btn btn-success">Tambah data</a>
-                  <h6 class="m-0 font-weight-bold text-primary">DataTables with Hover</h6>
                 </div>
                 <div class="table-responsive p-3">
                   <table class="table align-items-center table-flush table-hover" id="dataTableHover">
                     <thead class="thead-light">
                       <tr>
                         <th>No</th>
-                        <th>Nama Gedung</th>
-                        <th>Nama Galeri</th>
                         <th>Gambar</th>
+                        <th>Nama Galeri</th>
+                        <th>Nama Gedung</th>
                         <th></th>
                       </tr>
                     </thead>
-                    <tfoot>
-                      <tr>
-                        <th>No</th>
-                        <th>Nama Gedung</th>
-                        <th>Nama Galeri</th>
-                        <th>Gambar</th>
-                        <th></th>
-                      </tr>
-                    </tfoot>
                     <tbody>
                       @php
                         $no=1;
@@ -52,16 +42,16 @@
                       @foreach($datas as $tampil)
                       <tr>
                         <td>{{$no++}}</td>
-                        <td>{{$tampil->Gedung->nama_gedung}}</td>
-                        <td>{{$tampil->nama_galeri}}</td>
                         <td>
                           <img width="150px" src="{{ url('img/galeri/'.$tampil->gambar_galeri) }}">
                         </td>
+                        <td>{{$tampil->nama_galeri}}</td>
+                        <td>{{$tampil->Gedung->nama_gedung}}</td>
                         <td>
                           <a href="EditGaleri{{$tampil->id_galeri}}" class="btn btn-warning">
                             <i class="fas fa-pencil-alt"></i>
                           </a>
-                          <a href="HapusGaleri{{$tampil->id_galeri}}" class="btn btn-danger">
+                          <a href="HapusGaleri{{$tampil->id_galeri}}" class="btn btn-danger" onclick="return confirm('Anda yakin mau menghapus item ini ?')">
                             <i class="fas fa-trash"></i>
                           </a>
                         </td>

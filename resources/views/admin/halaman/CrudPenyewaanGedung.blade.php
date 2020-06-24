@@ -63,40 +63,7 @@
                         </th>
                       </tr>
                   </thead>
-                  <tfoot>
-                      <tr>
-                        <th>
-                          No
-                        </th>
-                        <th>
-                            Id Penyewaan
-                        </th>
-                        <th>
-                            Nama Gedung
-                        </th>
-                        <th>
-                            Tanggal Sewa
-                        </th>
-                        <th>
-                            Nama Acara
-                        </th>
-                        <th>
-                            Nama Penyewa
-                        </th>
-                        <th>
-                            Email Penyewa
-                        </th>
-                        <th>
-                            Harga
-                        </th>
-                        <th>
-                            Status Sewa
-                        </th>
-                        <th style="width: 20%">
-                          Aksi
-                        </th>
-                      </tr>
-                    </tfoot>
+
                   <tbody>
                       @php
                         $no=1;
@@ -110,7 +77,7 @@
                         <td>{{$tampil->nama_acara}}</td>
                         <td>{{$tampil->nama_penyewa}}</td>
                         <td>{{$tampil->email_penyewa}}</td>
-                        <td>@currency($tampil->Gedung->harga)</td>
+                        <td>@currency($tampil->harga)</td>
                         <td>
                           @if ($tampil->status_sewa == 'Menunggu Pembayaran')
                             <span class="badge badge-warning">{{$tampil->status_sewa}}</span>
@@ -129,7 +96,7 @@
                           <a href="EditPenyewaan{{$tampil->id_penyewaan}}" class="btn btn-warning">
                             <i class="fas fa-pencil-alt"></i>
                           </a>
-                          <a href="HapusPenyewaan{{$tampil->id_penyewaan}}" class="btn btn-danger">
+                          <a href="HapusPenyewaan{{$tampil->id_penyewaan}}" class="btn btn-danger" onclick="return confirm('Anda yakin mau menghapus item ini ?')">
                             <i class="fas fa-trash"></i>
                           </a>
                         </td>

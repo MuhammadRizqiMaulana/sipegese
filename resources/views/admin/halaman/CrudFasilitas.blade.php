@@ -23,17 +23,16 @@
               <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                   <a href="{{ url('TambahFasilitas') }}" class="btn btn-success">Tambah data</a>
-                  <h6 class="m-0 font-weight-bold text-primary">DataTables with Hover</h6>
                 </div>
                 <div class="table-responsive p-3">
                   <table class="table align-items-center table-flush table-hover" id="dataTableHover">
                     <thead class="thead-light">
                       <tr>
                         <th>
-                            Id Fasilitas
+                            No
                         </th>
                         <th>
-                            Id Gedung
+                            Nama Gedung
                         </th>
                         <th>
                             Ruangan Tambahan
@@ -70,49 +69,7 @@
                         </th>
                       </tr>
                   </thead>
-                  <tfoot>
-                      <tr>
-                        <th>
-                            Id Fasilitas
-                        </th>
-                        <th>
-                            Id Gedung
-                        </th>
-                        <th>
-                            Ruangan Tambahan
-                        </th>
-                        <th>
-                            Toilet
-                        </th>
-                        <th>
-                            Perlengkapan Operator
-                        </th>
-                        <th>
-                            Kursi
-                        </th>
-                        <th>
-                            Mushola
-                        </th>
-                        <th>
-                            Fasilitas Tambahan 1
-                        </th>
-                        <th>
-                            Fasilitas Tambahan 2
-                        </th>
-                        <th>
-                            Fasilitas Tambahan 3
-                        </th>
-                        <th>
-                            Fasilitas Tambahan 4
-                        </th>
-                        <th>
-                            Fasilitas Tambahan 5
-                        </th>
-                        <th style="width: 20%">
-                          Aksi
-                        </th>
-                      </tr>
-                    </tfoot>
+
                   <tbody>
                       @php
                         $no=1;
@@ -135,7 +92,7 @@
                           <a href="EditFasilitas{{$tampil->id_fasilitas}}" class="btn btn-warning">
                             <i class="fas fa-pencil-alt"></i>
                           </a>
-                          <a href="HapusFasilitas{{$tampil->id_fasilitas}}" class="btn btn-danger">
+                          <a href="HapusFasilitas{{$tampil->id_fasilitas}}" class="btn btn-danger" onclick="return confirm('Anda yakin mau menghapus item ini ?')">
                             <i class="fas fa-trash"></i>
                           </a>
                         </td>

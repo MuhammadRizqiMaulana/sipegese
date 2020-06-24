@@ -23,6 +23,15 @@
                                     </form>
                                 </div>
                             </article>
+
+                            @if(\Session::has('alert-success'))
+                                <div class="alert alert-success alert-dismissible" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    {{Session::get('alert-success')}}
+                                </div>
+                             @endif
                             <hr>
                 
                             <article class="row blog_item">
@@ -134,19 +143,18 @@
                                             <hr>
 
                                         @if(isset($datas))
+
+                                            @if(isset($datas->Pembayaran))
+                                                <p><strong>Status Bayar : </Strong><b>{{$datas->Pembayaran->status_bayar}}</b></p>                                                
+                                            @endif
+
                                             @if($datas->status_sewa == 'Menunggu Pembayaran')
-                                            <strong>Silahkan Melakukan Pembayaran</Strong>
-                                            <b><p>@currency($datas->Gedung->harga)</p></b>
-                                            <strong>Sebelum :</strong>
-                                            <label><b><u>{{$besok}} WIB</u></b></label>
-
-
+                                                <strong>Silahkan Melakukan Pembayaran</Strong>
+                                                <b><p>@currency($datas->Gedung->harga)</p></b>
+                                                <strong>Sebelum :</strong>
+                                                <label><b><u>{{$besok}} WIB</u></b></label>
                                             @endif
-
-                                            @if($datas->status_sewa != 'Menunggu Pembayaran')
-                                                <strong>Status Bayar : </Strong><b><p>{{$datas->Pembayaran->status_bayar}}</p></b>
-                                                
-                                            @endif
+                                            
                                         @else
 
                             @if(\Session::has('alert-danger'))
@@ -216,7 +224,11 @@
                                             @else
                                                 disabled
                                             @endif
-                                                required></td>
+                                            >
+                                            @if ($errors->has('bukti_pembayaran'))
+                                                <span class="text-danger"><p class="text-right">* {{ $errors->first('bukti_pembayaran') }}</p></span>
+                                            @endif
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td><input type="text" class="form-control" name="jumlah_bayar" placeholder="Masukkan Jumlah Transfer"
@@ -226,7 +238,11 @@
                                             @else
                                                 disabled
                                             @endif
-                                                required></td>
+                                            >
+                                            @if ($errors->has('jumlah_bayar'))
+                                                <span class="text-danger"><p class="text-right">* {{ $errors->first('jumlah_bayar') }}</p></span>
+                                            @endif
+                                            </td>
                                         </tr>
                                     </table>
                                     <br>

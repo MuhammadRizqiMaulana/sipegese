@@ -12,23 +12,31 @@
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
+
       <hr class="sidebar-divider">
-      <div class="sidebar-heading">
-        Features
-      </div>
-      <li class="nav-item {{ Request::is('CrudAkunUser')? "active":""}}">
-        <a class="nav-link" href="{{url ('CrudAkunUser')}}">
-          <i class="fab fa-fw fa-wpforms"></i>
-          <span>Akun User</span>
-        </a>
-      </li>
-      <li class="nav-item {{ Request::is('CrudFasilitas')? "active":""}}  {{ Request::is('CrudGedung')? "active":""}}">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap"
-          aria-expanded="true" aria-controls="collapseBootstrap">
+      
+      <li class="nav-item {{ Request::is('CrudAkunAdmin')? "active":""}}  {{ Request::is('CrudAkunUser')? "active":""}}">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap1"
+          aria-expanded="true" aria-controls="collapseBootstrap1">
           <i class="far fa-fw fa-user"></i>
+          <span>Akun</span>
+        </a>
+        <div id="collapseBootstrap1" class="collapse {{ Request::is('CrudAkunAdmin')? "show":""}} {{ Request::is('CrudAkunUser')? "show":""}} " aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Akun</h6>
+            <a class="collapse-item {{ Request::is('CrudAkunUser')? "active":""}}" href="{{url ('CrudAkunUser')}}">Akun User</a>
+            <a class="collapse-item {{ Request::is('CrudAkunAdmin')? "active":""}}" href="{{url ('CrudAkunAdmin')}}">Akun Admin</a>
+          </div>
+        </div>
+      </li>
+
+      <li class="nav-item {{ Request::is('CrudFasilitas')? "active":""}}  {{ Request::is('CrudGedung')? "active":""}}">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap2"
+          aria-expanded="true" aria-controls="collapseBootstrap2">
+          <i class="fab fa-fw fa-wpforms"></i>
           <span>Master</span>
         </a>
-        <div id="collapseBootstrap" class="collapse {{ Request::is('CrudFasilitas')? "show":""}} {{ Request::is('CrudGedung')? "show":""}} " aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+        <div id="collapseBootstrap2" class="collapse {{ Request::is('CrudFasilitas')? "show":""}} {{ Request::is('CrudGedung')? "show":""}} " aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Master</h6>
             <a class="collapse-item {{ Request::is('CrudGedung')? "active":""}}" href="{{url ('CrudGedung')}}">Gedung</a>
@@ -36,13 +44,14 @@
           </div>
         </div>
       </li>
+
       <li class="nav-item {{ Request::is('CrudPenyewaanGedung')? "active":""}}  {{ Request::is('CrudPembayaranGedung')? "active":""}}">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap2"
-          aria-expanded="true" aria-controls="collapseBootstrap2">
-          <i class="far fa-fw fa-user"></i>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap3"
+          aria-expanded="true" aria-controls="collapseBootstrap3">
+          <i class="far fa-fw fa-clipboard"></i>
           <span>Penyewaan Gedung</span>
         </a>
-        <div id="collapseBootstrap2" class="collapse {{ Request::is('CrudPembayaranGedung')? "show":""}} {{ Request::is('CrudPenyewaanGedung')? "show":""}} " aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+        <div id="collapseBootstrap3" class="collapse {{ Request::is('CrudPembayaranGedung')? "show":""}} {{ Request::is('CrudPenyewaanGedung')? "show":""}} " aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Penyewaan Gedung</h6>
             <a class="collapse-item {{ Request::is('CrudPenyewaanGedung')? "active":""}}" href="{{url ('CrudPenyewaanGedung')}}">Sewa Gedung</a>
@@ -50,13 +59,14 @@
           </div>
         </div>
       </li>
-      
-      <li class="nav-item {{ Request::is('CrudKalenderAcara')? "active":""}}">
-        <a class="nav-link" href="{{url ('CrudKalenderAcara')}}">
-          <i class="far fa-fw fa-calendar"></i>
-          <span>Kalender Acara</span>
+     
+     <li class="nav-item {{ Request::is('CrudLaporan')? "active":""}}">
+        <a class="nav-link" href="{{url ('CrudLaporan')}}">
+          <i class="fab fa-fw fa-wpforms"></i>
+          <span>Laporan</span>
         </a>
       </li>
+
       <li class="nav-item {{ Request::is('CrudGaleri')? "active":""}}">
         <a class="nav-link" href="{{url ('CrudGaleri')}}">
           <i class="far fa-fw fa-image"></i>

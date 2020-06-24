@@ -53,35 +53,22 @@
                     <div class="col-lg-8">
                         <div class="blog_left_sidebar">
                             <article class="row blog_item">
-                                <div class="col-md-3">
-                                    <div class="blog_info text-right">
-                                        <div class="post_tag">
-                                            <a href="#">Food,</a>
-                                            <a class="active" href="#">Technology,</a>
-                                            <a href="#">Politics,</a>
-                                            <a href="#">Lifestyle</a>
-                                        </div>
-                                        <ul class="blog_meta list">
-                                            <li><a href="#">Mark wiens<i class="lnr lnr-user"></i></a></li>
-                                            <li><a href="#">12 Dec, 2017<i class="lnr lnr-calendar-full"></i></a></li>
-                                            <li><a href="#">1.2M Views<i class="lnr lnr-eye"></i></a></li>
-                                            <li><a href="#">06 Comments<i class="lnr lnr-bubble"></i></a></li>
-                                        </ul>
-                                    </div>
+                                <div class="col-md-2">
+                                    
                                 </div>
                                 <div class="col-md-9">
                                     <div class="blog_post">
                                         <img src="img/blog/main-blog/m-blog-1.jpg" alt="">
                                         <div class="blog_details">
                                             <a href="single-blog.html">
-                                                <h2>Astronomy Binoculars A Great Alternative</h2>
+                                                <h2>Sekilas Tentang Gedung Serbaguna</h2>
                                             </a>
-                                            <p>MCSE boot camps have its supporters and its detractors. Some people do
-                                                not
-                                                understand why you should have to spend money on boot camp when you can
-                                                get
-                                                the MCSE study materials yourself at a fraction.</p>
-                                            <a href="single-blog.html" class="blog_btn">View More</a>
+											<p>Gedung Serbaguna sudah berdiri sejak tahun 1990 diresmikan pada tanggal 23 Oktober 1990.</p>
+											<p>Gedung Serbaguna dilengkapi dengan berbagai sarana dan fasilitas yang menghiasi seluruh ruangan,
+											diantaranya Ballroom dengan design interior mewah dengan Full AC dilapisi Karpet Mewah yang membentang diseluruh ruangan serta dengan 5 Lampu Gantung Kristal sehingga memberikan kesan anggun nan mewah.
+											Pengelola Gedung Serbaguna telah berpengalaman dalam mengkoordinasikan berbagai jenis acara seperti Pernikahan, Resepsi Perkawinan, wisuda, Seminar, Pameran, Peluncuran Produk, Gathering, Gala Dinner, dan Acara Keagamaan.
+											Lokasi Gedung Serbaguna sangat strategis.</p>
+											<p>Gedung Serbaguna telah memiliki cabang diberbagai kota, seperti Jakarta, Bandung, Cirebon, Kuningan, Indramayu, dan masih banyak yang lainnya.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -145,30 +132,17 @@
 		<section class="section_gap_top food-gallery-area">
 			<div class="container-fluid no-padding">
 				<div class="row owl-carousel active-food-gallery">
+			@if(isset($galeri))
+				@foreach($galeri as $tampil)
 					<!-- single gallery item -->
-					<div class="single-gallery-item">
-						<img class="img-fluid" src="img/galeri/gambar3.jpg" alt="">
-					</div>
-					<!-- single gallery item -->
-					<div class="single-gallery-item">
-						<img class="img-fluid" src="img/galeri/gambar4.jpg" alt="">
-					</div>
-					<!-- single gallery item -->
-					<div class="single-gallery-item">
-						<img class="img-fluid" src="img/galeri/gambar6.jpg" alt="">
-					</div>
-					<!-- single gallery item -->
-					<div class="single-gallery-item">
-						<img class="img-fluid" src="img/galeri/gambar8.jpg" alt="">
-					</div>
-					<!-- single gallery item -->
-					<div class="single-gallery-item">
-						<img class="img-fluid" src="img/galeri/gambar9.jpg" alt="">
-					</div>
-					<!-- single gallery item -->
-					<div class="single-gallery-item">
-						<img class="img-fluid" src="img/galeri/gambar11.jpg" alt="">
-					</div>
+					<div class="col-md-13">
+							<a href="{{ url('img/galeri/'.$tampil->gambar_galeri) }}" class="img-gal">
+								<div class="single-gallery-image" style="background: url({{ url('img/galeri/'.$tampil->gambar_galeri) }});"></div>
+							</a>
+						</div>
+				@endforeach
+			@endif
+				
 				</div>
 			</div>
 		</section>

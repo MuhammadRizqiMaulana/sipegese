@@ -39,6 +39,7 @@
 		<section class="menu_area section_gap">
 			<div class="container">
 				<div class="row menu_inner">
+				@if(isset($datas))
 					@foreach($datas as $tampil)
 					<div class="col-lg-4 col-sm-6 mt-sm-30 typo-sec">
 						<h1 class="mb-20 title_color">{{$tampil->Gedung->nama_gedung}}</h1>
@@ -82,7 +83,7 @@
 							</div>
 					</div>
 					@endforeach
-					
+				@endif
 				</div>
 			</div>
 		</section>

@@ -10,26 +10,48 @@ use App\ModelGedung;
 
 class CrudGaleriController extends Controller
 {
-    public function index()     {         
-    	$datas = ModelGaleri::get();         
-    	return view('admin.halaman.CrudGaleri',compact('datas'));     
-    }  
+    public function index()  { 
+        if(!Session::get('login')){
+            return redirect('LoginAdmin')->with('alert','Anda harus login dulu');
+        }
+        else{
 
-    public function tambah() {
-    	return view('admin.halaman.tambah_data.TambahGaleri');
+        	$datas = ModelGaleri::get();         
+        	return view('admin.halaman.CrudGaleri',compact('datas'));     
+        }  
     }
 
-    public  function pilih_gedung(){
-    	$gedungs = ModelGedung::all();     
-    	return view('admin.halaman.tambah_data.TambahGaleri',compact('gedungs')); 
-    } 
+    public function tambah() {
+
+        if(!Session::get('login')){
+            return redirect('LoginAdmin')->with('alert','Anda harus login dulu');
+        }
+        else{
+
+            $gedungs = ModelGedung::all(); 
+        	return view('admin.halaman.tambah_data.TambahGaleri',compact('gedungs')); 
+        }
+    }
+
 
     public function store( Request $request) {
+
+        $messages = [
+            'required' => ':attribute masih kosong',
+            'min' => ':attribute diisi minimal :min karakter',
+            'max' => ':attribute diisi maksimal :max karakter',
+            'numeric' => ':attribute harus berupa angka',
+            'unique' => ':attribute sudah ada',
+            'email' => ':attribute harus berupa email',
+            'image' => ':attribute harus berupa gambar',
+            'gambar_galeri.max' => 'tidak boleh lebih 2 Mb'
+        ];
+
     	$this->validate($request, [
     		'gedung' => 'required',
-    		'nama_galeri' => 'required',
-    		'gambar_galeri' => 'required|'
-    		]);
+    		'nama_galeri' => 'required|max:50',
+    		'gambar_galeri' => 'required|image|max:2048' 
+    	], $messages);
 
 
         $file = $request->file('gambar_galeri'); // menyimpan data gambar yang diupload ke variabel $file
@@ -46,17 +68,36 @@ class CrudGaleriController extends Controller
     }
 
     public function edit($id_galeri) {
-        $datas = ModelGaleri::find($id_galeri);
-        $gedungs = ModelGedung::all();
-        return view('admin.halaman.edit_data.EditGaleri',compact('datas','gedungs'));
+
+        if(!Session::get('login')){
+            return redirect('LoginAdmin')->with('alert','Anda harus login dulu');
+        }
+        else{
+
+            $datas = ModelGaleri::find($id_galeri);
+            $gedungs = ModelGedung::all();
+            return view('admin.halaman.edit_data.EditGaleri',compact('datas','gedungs'));
+        }
     }
 
     public function update($id_galeri, Request $request) {
+
+        $messages = [
+            'required' => ':attribute masih kosong',
+            'min' => ':attribute diisi minimal :min karakter',
+            'max' => ':attribute diisi maksimal :max karakter',
+            'numeric' => ':attribute harus berupa angka',
+            'unique' => ':attribute sudah ada',
+            'email' => ':attribute harus berupa email',
+            'image' => ':attribute harus berupa gambar',
+            'gambar_galeri.max' => 'tidak boleh lebih 2 Mb'
+        ];
+
         $this->validate($request, [
             'gedung' => 'required',
-            'nama_galeri' => 'required',
-            'gambar_galeri' => 'nullable|'
-            ]);
+            'nama_galeri' => 'required|max:50',
+            'gambar_galeri' => 'nullable|image|max:2048' 
+            ], $messages);
 
         $datas = ModelGaleri::find($id_galeri);
         $datas->id_gedung = $request->gedung;

@@ -5,78 +5,66 @@
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Data Akun User</h1>
             <ol class="breadcrumb">  
-              <li class="breadcrumb-item"><a href="{{url ('dashboardadmin')}}">Dashboard</a></li>
+              <li class="breadcrumb-item"><a href="{{url ('DashboardAdmin')}}">Dashboard</a></li>
               <li class="breadcrumb-item active" aria-current="page">Data Akun User</li>
             </ol>
           </div>
           <hr>
+        @if(\Session::has('alert-success'))
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h6><i class="fas fa-sign-out-alt"></i><b> Success!!</b></h6>
+                        {{Session::get('alert-success')}}
+                    </div>
+                  @endif
+
           <!-- DataTable with Hover -->
             <div class="col-lg-12">
               <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <a href="" class="btn btn-success">Tambah data</a>
-                  <h6 class="m-0 font-weight-bold text-primary">DataTables with Hover</h6>
+                  
+                  <a href="{{url ('TambahAkunUser')}}" class="btn btn-success" >Tambah data</a>
                 </div>
                 <div class="table-responsive p-3">
                   <table class="table align-items-center table-flush table-hover" id="dataTableHover">
                     <thead class="thead-light">
                       <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
+                        <th>No</th>
+                        <th>Nama</th>
+                        <th>Email</th>
+                        <th>No Handphone</th>
+                        <th>Alamat</th>
+                        <th></th>
                       </tr>
                     </thead>
-                    <tfoot>
-                      <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
-                      </tr>
-                    </tfoot>
                     <tbody>
+                      @php
+                        $no=1;
+                      @endphp
+                      @foreach($datas as $tampil)
                       <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>61</td>
-                        <td>2011/04/25</td>
-                        <td>$320,800</td>
+                        <td>{{$no++}}</td>
+                        <td>{{$tampil->nama_user}}</td>
+                        <td>{{$tampil->email}}</td>
+                        <td>{{$tampil->no_hp}}</td>                         
+                        <td>{{$tampil->alamat}}</td>
+                        <td>
+                          <a href="EditAkunUser{{$tampil->id_user}}" class="btn btn-warning">
+                            <i class="fas fa-pencil-alt"></i>
+                          </a>
+                          <a href="HapusAkunUser{{$tampil->id_user}}" class="btn btn-danger" onclick="return confirm('Anda yakin mau menghapus item ini ?')">
+                            <i class="fas fa-trash"></i>
+                          </a>
+                        </td>
                       </tr>
-                      <tr>
-                        <td>Garrett Winters</td>
-                        <td>Accountant</td>
-                        <td>Tokyo</td>
-                        <td>63</td>
-                        <td>2011/07/25</td>
-                        <td>$170,750</td>
-                      </tr>
-                      <tr>
-                        <td>Ashton Cox</td>
-                        <td>Junior Technical Author</td>
-                        <td>San Francisco</td>
-                        <td>66</td>
-                        <td>2009/01/12</td>
-                        <td>$86,000</td>
-                      </tr>
-                      <tr>
-                        <td>Cedric Kelly</td>
-                        <td>Senior Javascript Developer</td>
-                        <td>Edinburgh</td>
-                        <td>22</td>
-                        <td>2012/03/29</td>
-                        <td>$433,060</td>
-                      </tr>
-                      
+                      @endforeach                      
                     </tbody>
                   </table>
                 </div>
               </div>
+
             </div>
 
         <!---Container Fluid-->

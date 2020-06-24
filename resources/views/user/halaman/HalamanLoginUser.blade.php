@@ -71,21 +71,34 @@
 				                 </div>
 				                 @endif
 				            <!------------ End Alert----------->
-							<form class="contact-form-area contact-page-form contact-form text-right" action="{{url('loginPost')}}" method="post">
+							<form class="contact-form-area contact-page-form contact-form text-right" action="{{url('loginPostUser')}}" method="post">
 								
 								{{csrf_field()}}
 
 								<div class="form-group col-md-12">
-									<input type="email" class="form-control" id="email" name="email" placeholder="Masukkan email" onfocus="this.placeholder = ''"
+									<input type="text" class="form-control" id="email" name="email" placeholder="Masukkan email" onfocus="this.placeholder = ''"
 									 onblur="this.placeholder = 'Masukkan Email'">
 								</div>
+								@if ($errors->has('email'))
+	                                <span class="text-danger"><p class="text-right">* {{ $errors->first('email') }}</p></span>
+	                            @endif
+
 								<div class="form-group col-md-12">
 									<input type="password" class="form-control" id="password" name="password" placeholder="Masukkan Password" onfocus="this.placeholder = ''"
 									 onblur="this.placeholder = 'Masukkan Password'">
 								</div>
+								@if ($errors->has('password'))
+	                                <span class="text-danger"><p class="text-right">* {{ $errors->first('password') }}</p></span>
+	                            @endif
 								
 								<div class="col-lg-12 text-center">
 									<input type="submit" class="primary-btn text-uppercase" value="Login">
+								</div>
+								<div class="col-lg-12 text-center text-primary">
+									<strong>atau</strong>
+								</div>
+								<div class="col-lg-12 text-center">
+									<a class="primary-btn text-uppercase" href="{{url('HalamanRegisterUser')}}">Tidak Punya Akun</a>
 								</div>
 							</form>
 						</div>

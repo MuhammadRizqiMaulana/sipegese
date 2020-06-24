@@ -59,8 +59,8 @@
 	<script type="text/javascript">
 	$(document).ready(function(){
 		
-		<?php if (isset($tgl)): ?>
-			var datesToBeDisabled = <?php echo json_encode($tgl);  ?>;
+		<?php if (isset($tgldisable)): ?>
+			var datesToBeDisabled = <?php echo json_encode($tgldisable);  ?>;
 
 			$.ajaxSetup({
 				headers:{

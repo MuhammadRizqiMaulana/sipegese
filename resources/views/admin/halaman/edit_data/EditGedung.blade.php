@@ -20,81 +20,70 @@
                   <h6 class="m-0 font-weight-bold text-primary">Ubah Data Gedung</h6>
                 </div>
                 <div class="card-body">
-                    <!------------ Alert----------->
-
-                      @if($errors->any())
-                              <div class="alert alert-danger alert-dismissible" role="alert">
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                      <span aria-hidden="true">&times;</span>
-                                    </button>
-                                    <ul>
-                                      @foreach ($errors->all() as $error)
-                                      <li>{{$error}}</li>
-                                      @endforeach
-                                    </ul>
-                              </div>
-                            @endif
-
-                    <!------------ Alert----------->
 
                   <form enctype="multipart/form-data" class="contact-form-area contact-page-form contact-form text-left" action="AksiEditGedung{{$datas->id_gedung}}" method="post">
 
                     {{csrf_field()}}
-                    {{method_field('PUT')}}
 
                     <div class="form-group">
-                      <label><b>Nama Gedung</b></label>
-                      <input type="text" class="form-control" name="nama_gedung" placeholder="Masukkan Nama Gedung" value="{{$datas->nama_gedung}}">
 
-                          @if($errors->has('nama_gedung'))
-                            <div class="text-danger">
-                              {{$errors->first('nama_gedung')}}
-                            </div>
-                          @endif
+                      <table>
+                        <tr>
+                          <td><label><b>Nama Gedung</b></label></td>
+                          <td width="300"><label><b>Nama Gedung Baru</b></label></td>
+                        </tr>
+                        <tr>
+                          <td>
+                              <input type="text" class="form-control" value="{{$datas->nama_gedung}}" readonly>
+                          </td>
+                          <td>
+                              <input type="text" class="form-control" name="nama_gedung" placeholder="Kosongkan jika tidak dirubah">
+                          </td>
+                        </tr>
+                      </table>     
+
+                    @if ($errors->has('nama_gedung'))
+                        <span class="text-danger"><p class="text-right">* {{ $errors->first('nama_gedung') }}</p></span>
+                    @endif
                     </div>
 
                     <div class="form-group">
-                      <label><b>Alamat</b></label>
-                      <input type="text" class="form-control" name="alamat" placeholder="Masukkan Alamat" value="{{$datas->alamat}}">
+                      <label><b>Harga</b></label>
+                      <input type="text" class="form-control" name="harga" placeholder="Masukkan Harga (tanpa titik koma)" value="{{$datas->harga}}">
 
-                          @if($errors->has('alamat'))
-                            <div class="text-danger">
-                              {{$errors->first('alamat')}}
-                            </div>
-                          @endif
+                    @if ($errors->has('harga'))
+                        <span class="text-danger"><p class="text-right">* {{ $errors->first('harga') }}</p></span>
+                    @endif
                     </div>
 
                     <div class="form-group">
                       <label><b>Deskripsi</b></label>
                       <input type="deskripsi" class="form-control" name="deskripsi"placeholder="Masukkan Deskripsi" value="{{$datas->deskripsi}}">
 
-                          @if($errors->has('deskripsi'))
-                            <div class="text-danger">
-                              {{$errors->first('deskripsi')}}
-                            </div>
-                          @endif
+                    @if ($errors->has('deskripsi'))
+                        <span class="text-danger"><p class="text-right">* {{ $errors->first('deskripsi') }}</p></span>
+                    @endif
                     </div>
 
                     <div class="form-group">
-                      <label><b>Harga</b></label>
-                      <input type="number" min="0" class="form-control" name="harga" placeholder="Masukkan Harga (tanpa titik koma)" value="{{$datas->harga}}">
+                      <label><b>Alamat</b></label>
+                      <textarea class="form-control" name="alamat" placeholder="Masukkan Alamat">{{$datas->alamat}}</textarea>
 
-                          @if($errors->has('harga'))
-                            <div class="text-danger">
-                              {{$errors->first('harga')}}
-                            </div>
-                          @endif
+                    @if ($errors->has('alamat'))
+                        <span class="text-danger"><p class="text-right">* {{ $errors->first('alamat') }}</p></span>
+                    @endif
                     </div>
 
                     <div class="form-group">
                       <label><b>Gambar Gedung</b></label>
                       <input type="file" class="form-control" name="gambar_gedung">
+                      <span class="text-info">
+                        <p class="text-left">- Ukuran Maksimal gambar 2 Mb</p>
+                      </span>
 
-                          @if($errors->has('gambar_gedung'))
-                            <div class="text-danger">
-                              {{$errors->first('gambar_gedung')}}
-                            </div>
-                          @endif
+                    @if ($errors->has('gambar_gedung'))
+                        <span class="text-danger"><p class="text-right">* {{ $errors->first('gambar_gedung') }}</p></span>
+                    @endif
                     </div>
 
                     <div class="form-group"> 

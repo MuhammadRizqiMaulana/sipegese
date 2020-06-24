@@ -10,15 +10,17 @@
             </ol>
           </div>
           <hr>
-          @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-                @endif
+
+          @if(\Session::has('alert-success'))
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h6><i class="fas fa-sign-out-alt"></i><b> Success!!</b></h6>
+                        {{Session::get('alert-success')}}
+                    </div>
+                  @endif
+
           <!-- DataTable with Hover -->
             <div class="col-lg-12">
               <div class="card mb-4">
@@ -70,46 +72,7 @@
                         </th>
                       </tr>
                   </thead>
-                  <tfoot>
-                      <tr>
-                        <th>
-                          No
-                        </th>
-                        <th>
-                            Id Penyewaan
-                        </th>
-                        <th>
-                            Nama Gedung
-                        </th>
-                        <th>
-                            Tanggal Sewa
-                        </th>
-                        <th>
-                            Bukti Pembayaran
-                        </th>
-                        <th>
-                            Jumlah Bayar
-                        </th>
-                        <th>
-                            Status Bayar
-                        </th>
-                        <th style="width: 20%">
-                          Aksi
-                        </th>
-                        <th>
-                            Nama Acara
-                        </th>
-                        <th>
-                            Nama Penyewa
-                        </th>
-                        <th>
-                            Harga
-                        </th>
-                        <th style="width: 20%">
-                          
-                        </th>
-                      </tr>
-                    </tfoot>
+
                   <tbody>
                       @php
                         $no=1;
@@ -141,7 +104,7 @@
                           <a class="btn btn-success btn-sm" href="AksiValidasi{{$tampil->id_penyewaan}}" aria-disabled="true" disabled>
                             <i class="fas fa-check"></i>Konfirmasi
                           </a>
-                          <a class="btn btn-danger btn-sm" href="AksiBayarSalah{{$tampil->Pembayaran->id_pembayaran}}">
+                          <a class="btn btn-danger btn-sm" href="AksiBayarSalah{{$tampil->id_penyewaan}}">
                             <i class="fas fa-ban"></i>Tidak sesuai
                           </a>
                         </td>
@@ -158,12 +121,15 @@
 
                         
                         <td>
-                          <a href="EditPenyewaan{{$tampil->id_penyewaan}}" class="btn btn-warning">
+                        @if(isset($tampil->Pembayaran))
+
+                          <a href="EditPembayaran{{$tampil->id_penyewaan}}" class="btn btn-warning">
                             <i class="fas fa-pencil-alt"></i>
                           </a>
-                          <a href="HapusPenyewaan{{$tampil->id_penyewaan}}" class="btn btn-danger">
+                          <a href="HapusPembayaran{{$tampil->Pembayaran->id_pembayaran}}" class="btn btn-danger">
                             <i class="fas fa-trash"></i>
                           </a>
+                        @endif
                         </td>
                       </tr>
                       @endforeach
